@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,29 +20,12 @@
                     </tabBar>
                     <connections>
                         <segue destination="5KU-xE-uak" kind="relationship" relationship="viewControllers" id="i6M-cZ-PwS"/>
-                        <segue destination="O2U-yf-uoG" kind="relationship" relationship="viewControllers" id="8lu-bU-QIU"/>
+                        <segue destination="rKD-1p-hZd" kind="relationship" relationship="viewControllers" id="Fok-Rj-wpe"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgl-yi-EIF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-832" y="-1422"/>
-        </scene>
-        <!--MAP-->
-        <scene sceneID="UWo-JK-pp7">
-            <objects>
-                <navigationController id="O2U-yf-uoG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="MAP" image="map" catalog="system" selectedImage="map.fill" id="l8N-XN-Tvc"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hs5-Ho-YUY">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="rKD-1p-hZd" kind="relationship" relationship="rootViewController" id="BCZ-8c-za3"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="es4-nF-YCr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="100" y="-1540"/>
         </scene>
         <!--LIST-->
         <scene sceneID="Y5D-TM-dLZ">
@@ -67,7 +51,7 @@
                     <view key="view" contentMode="scaleToFill" id="iF2-j6-Pgn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="qJa-Lp-259"/>
+                        <viewLayoutGuide key="safeArea" id="BaD-9v-qOh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Wcb-9J-z23"/>
@@ -76,21 +60,40 @@
             </objects>
             <point key="canvasLocation" x="859" y="-898"/>
         </scene>
-        <!--Map View Controller-->
+        <!--View Controller-->
+        <scene sceneID="Mqb-GO-dQJ">
+            <objects>
+                <viewController id="UpP-IZ-dA7" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="K7K-AC-bFt">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="avL-bS-gae"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TgN-he-Dqq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1624" y="-886"/>
+        </scene>
+        <!--MAP-->
         <scene sceneID="ScK-5K-g3N">
             <objects>
                 <viewController id="rKD-1p-hZd" customClass="MapViewController" customModule="SeoulCareer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" opaque="NO" contentMode="bottom" id="h4w-rR-aMr" customClass="NMFMapView">
+                    <view key="view" opaque="NO" contentMode="bottom" id="h4w-rR-aMr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="dvr-Uu-JvA"/>
+                        <viewLayoutGuide key="safeArea" id="tPz-yZ-60b"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="MAP" selectedImage="map.fill" catalog="system" id="9NK-RX-m6a">
+                        <imageReference key="image" image="map" catalog="system" variableValue="0.0"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="k4S-Dh-kAS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qM3-BP-2y1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="897" y="-1582"/>
+            <point key="canvasLocation" x="-106" y="-1423"/>
         </scene>
     </scenes>
     <resources>

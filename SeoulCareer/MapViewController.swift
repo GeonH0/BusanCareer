@@ -8,28 +8,29 @@
 import UIKit
 import NMapsMap
 
-class MapViewController : UIViewController {
+class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let mapNaverView = NMFNaverMapView()
+        mapNaverView.showZoomControls = false
+        mapNaverView.showLocationButton = true
+        mapNaverView.mapView.isScrollGestureEnabled = true
+        mapNaverView.mapView.isTiltGestureEnabled = true
+        mapNaverView.mapView.isRotateGestureEnabled = true
+        mapNaverView.mapView.isStopGestureEnabled = true
         
+        // Auto Layout 사용을 위해 필요함.
+        mapNaverView.translatesAutoresizingMaskIntoConstraints = false
         
-        var mapView = NMFNaverMapView(frame: view.frame)
-        view.addSubview(mapView)
-        mapView.showLocationButton = true
-        mapView.mapView.zoomLevel = 14
-
-        //줌 기능 가능
-//        mapView.allowsZooming  = true
-//
-//        mapView.minZoomLevel = 5.0
-//        mapView.maxZoomLevel = 10.0
-//
-//
-//
-//        //실내 지도 활성화
-//        mapView.isIndoorMapEnabled = true
+        view.addSubview(mapNaverView)
         
+       NSLayoutConstraint.activate([
+        mapNaverView.topAnchor.constraint(equalTo: view.topAnchor),
+        mapNaverView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        mapNaverView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        mapNaverView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+       ])
     }
 }
