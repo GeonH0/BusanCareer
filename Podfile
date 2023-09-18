@@ -7,6 +7,7 @@ target 'SeoulCareer' do
 
   # Pods for SeoulCareer
   pod 'NMapsMap'
+  pod 'Alamofire’
 
   target 'SeoulCareerTests' do
     inherit! :search_paths
