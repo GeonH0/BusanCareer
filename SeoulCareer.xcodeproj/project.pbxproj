@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */; };
+		1D5F21D92AB9858900C6B8A7 /* JobListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F21D72AB9858900C6B8A7 /* JobListCell.swift */; };
+		1D5F21DA2AB9858900C6B8A7 /* JobListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5F21D82AB9858900C6B8A7 /* JobListCell.xib */; };
 		1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B60D72AB099DD00650B87 /* MapViewController.swift */; };
 		1DC2669D2AB196B40043AF2C /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC2669C2AB196B40043AF2C /* Jobs.swift */; };
 		1DCF69432AAFFA9600A19419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69422AAFFA9600A19419 /* AppDelegate.swift */; };
@@ -40,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewContoroller.swift; sourceTree = "<group>"; };
+		1D5F21D72AB9858900C6B8A7 /* JobListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListCell.swift; sourceTree = "<group>"; };
+		1D5F21D82AB9858900C6B8A7 /* JobListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobListCell.xib; sourceTree = "<group>"; };
 		1D6B60D72AB099DD00650B87 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1DC2669C2AB196B40043AF2C /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
 		1DCF693F2AAFFA9600A19419 /* SeoulCareer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeoulCareer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,11 +127,14 @@
 				1DCF69422AAFFA9600A19419 /* AppDelegate.swift */,
 				1DCF69442AAFFA9600A19419 /* SceneDelegate.swift */,
 				1DCF69482AAFFA9600A19419 /* Main.storyboard */,
+				1D5F21D72AB9858900C6B8A7 /* JobListCell.swift */,
+				1D5F21D82AB9858900C6B8A7 /* JobListCell.xib */,
 				1D6B60D72AB099DD00650B87 /* MapViewController.swift */,
 				1DCF694B2AAFFA9700A19419 /* Assets.xcassets */,
 				1DCF694D2AAFFA9700A19419 /* LaunchScreen.storyboard */,
 				1DCF69502AAFFA9700A19419 /* Info.plist */,
 				1DC2669C2AB196B40043AF2C /* Jobs.swift */,
+				1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */,
 			);
 			path = SeoulCareer;
 			sourceTree = "<group>";
@@ -282,6 +291,7 @@
 				1DCF694F2AAFFA9700A19419 /* LaunchScreen.storyboard in Resources */,
 				1DCF694C2AAFFA9700A19419 /* Assets.xcassets in Resources */,
 				1DCF694A2AAFFA9600A19419 /* Main.storyboard in Resources */,
+				1D5F21DA2AB9858900C6B8A7 /* JobListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +420,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DCF69432AAFFA9600A19419 /* AppDelegate.swift in Sources */,
+				1D5F21D92AB9858900C6B8A7 /* JobListCell.swift in Sources */,
 				1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */,
+				1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */,
 				1DCF69452AAFFA9600A19419 /* SceneDelegate.swift in Sources */,
 				1DC2669D2AB196B40043AF2C /* Jobs.swift in Sources */,
 			);
