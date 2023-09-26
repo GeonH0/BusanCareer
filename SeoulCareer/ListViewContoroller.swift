@@ -28,7 +28,7 @@ class ListViewController : UITableViewController {
     
     
     func fetchJobOverview(
-        completionHandler : @escaping (Result <Items, Error>) -> Void
+        completionHandler : @escaping (Result <JobOpnngInfoResponse, Error>) -> Void
     ){
         let url = "http://apis.data.go.kr/6260000/BusanJobOpnngInfoService/getJobOpnngInfo"
         let param = [
@@ -44,7 +44,7 @@ class ListViewController : UITableViewController {
                 case let .success(data) :
                     do {
                         let decoder = JSONDecoder()
-                        let result = try decoder.decode(Items.self, from: data)
+                        let result = try decoder.decode(JobOpnngInfoResponse.self, from: data)
                         completionHandler(.success(result))
                     } catch{
                         completionHandler(.failure(error))
