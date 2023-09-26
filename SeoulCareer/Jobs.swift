@@ -7,23 +7,7 @@
 
 import Foundation
 
-struct Response: Codable {
-    let getJobOpnngInfo: JobOpnngInfo
-}
 
-struct JobOpnngInfo: Codable {
-    let header: Header
-    let body: Body
-}
-
-struct Header: Codable {
-    let resultCode, resultMsg: String
-}
-
-struct Body: Codable {
-    let items: Items
-    let numOfRows, pageNo, totalCount: Int
-}
 
 struct Items: Codable {
     let item: [Item]
