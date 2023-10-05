@@ -13,35 +13,36 @@ struct JobOpnngInfoResponse : Codable {
 
 struct JobInfo: Codable {
     let title: String
-    let recruitAgencyName: String
-    let recruitAgencyType: String
-    let mngDept: String
-    let mngName: String
-    let bunya: String
-    let workDate_type: String
-    let workDate_nm: String
+    let recruitAgencyName: String?
+    let recruitAgencyType: String?
+    let mngDept: String?
+    let mngName: String?
+    let bunya: String?
+    let workDate_type: String?
+    let workDate_nm: String?
     let workregiontxt: String?
     let reqDate_s: String?
     let reqDate_e: String?
-    let reqType:String
-    let reqType_nm:String
-    let regDate:String
-    let modDate:String
+    let reqType:String?
+    let reqType_nm:String?
+    let regDate:String?
+    let modDate:String?
 }
 
 struct Item : Codable {
-    var item : [JobInfo]?
+    var item : [JobInfo]
 }
 
 struct Items : Codable {
-    let items : Item
+    let items : Item?
 }
 
 struct Body : Codable {
+    var body : Items?
     var numOfRows:Int?
     var pageNo:Int?
     var totalCount:Int?
-    var body : Items
+    
 }
 
 struct Header:Codable{
