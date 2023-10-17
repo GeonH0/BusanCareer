@@ -130,11 +130,11 @@
 				1D5F21D72AB9858900C6B8A7 /* JobListCell.swift */,
 				1D5F21D82AB9858900C6B8A7 /* JobListCell.xib */,
 				1D6B60D72AB099DD00650B87 /* MapViewController.swift */,
+				1DC2669C2AB196B40043AF2C /* Jobs.swift */,
+				1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */,
 				1DCF694B2AAFFA9700A19419 /* Assets.xcassets */,
 				1DCF694D2AAFFA9700A19419 /* LaunchScreen.storyboard */,
 				1DCF69502AAFFA9700A19419 /* Info.plist */,
-				1DC2669C2AB196B40043AF2C /* Jobs.swift */,
-				1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */,
 			);
 			path = SeoulCareer;
 			sourceTree = "<group>";

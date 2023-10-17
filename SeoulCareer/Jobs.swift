@@ -50,4 +50,3 @@ struct Header:Codable{
   var resultMsg:String?
 }
   
-
