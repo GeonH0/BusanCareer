@@ -1,24 +1,26 @@
 import Foundation
 import Alamofire
 
+
+
 class ListViewController : UITableViewController {
     
-    var jobs: [JobInfo] = [] // JobOpnngInfoResponse 대신 JobInfo를 사용합니다.
+    var jobs: [Item] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TableView에 Cell을 등록합니다.
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         self.fetchJobOverview(completionHandler: {[weak self] result in
             guard let self = self else {return}
             switch result {
             case let .success(result):
-                // 네트워크 요청이 끝나면 메인 스레드에서 UI를 업데이트합니다.
                 DispatchQueue.main.async {
-                    self.jobs = result
-                    self.tableView.reloadData()
+                    if let items = result {
+                        self.jobs = items
+                        self.tableView.reloadData()
+                    }
                 }
                 
             case let .failure(error):
@@ -28,7 +30,7 @@ class ListViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return jobs.count // 셀 개수 설정
+        return jobs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -36,41 +38,52 @@ class ListViewController : UITableViewController {
         
         let job = jobs[indexPath.row]
         
-        // cell 설정 (job 객체 내부의 프로퍼티에 따라 달라집니다.)
-        cell.textLabel?.text = job.title
+         cell.textLabel?.text = job.title
         
-        return cell
-    }
-    
-    func fetchJobOverview(
-       completionHandler : @escaping (Result <[JobInfo], Error>) -> Void  // [JobInfo] 배열을 반환하도록 변경합니다.
-   ){
-       let url = "http://apis.data.go.kr/6260000/BusanJobOpnngInfoService/getJobOpnngInfo"
-       let param = [
-           "serviceKey" : "CjHhgoullv8N53RHncSTgoqKKrObdG2H6sAumzGW0VMNLMlqLeATBaiNO8OIjafRyAtUGBGEXTRs9kvJa9jZVA%3D%3D",
-           "numOfRows" : "10",
-           "pageNo" : "1",
-           "resultType" : "json"
-       ]
-       
-       AF.request(url,method: .get,parameters: param)
-           .responseData( completionHandler: { response in
-               switch response.result{
-               case let .success(data) :
-                   do {
-                       let decoder = JSONDecoder()
-                       let resultResponse = try decoder.decode(JobOpnngInfoResponse.self, from: data)
-                       if let jobInfosArray = resultResponse.getJobOpnngInfo.body?.items?.item{
-                           completionHandler(.success(jobInfosArray))
-                       } else {
-                           throw NSError(domain:"", code:-1, userInfo:[ NSLocalizedDescriptionKey:"Parsing error"])
-                       }
-                   } catch{
-                       completionHandler(.failure(error))
-                   }
-               case let .failure(error):
-                   completionHandler(.failure(error))
-               }
-           })
-   }
+         return cell
+     }
+
+     func fetchJobOverview(
+          completionHandler : @escaping (Result <[Item]?, Error>) -> Void
+      ){
+          let url = "http://apis.data.go.kr/6260000/BusanJobOpnngInfoService/getJobOpnngInfo"
+          
+          var serviceKey = "CjHhgoullv8N53RHncSTgoqKKrObdG2H6sAumzGW0VMNLMlqLeATBaiNO8OIjafRyAtUGBGEXTRs9kvJa9jZVA%3D%3D"
+          if let decodedServiceKey = serviceKey.removingPercentEncoding {
+              serviceKey = decodedServiceKey
+          }
+
+          let param : [String : Any]  =
+              ["serviceKey" : serviceKey,
+               "numOfRows" : "10",
+               "pageNo" : "1",
+               "resultType" : "json"]
+          
+          
+          AF.request(url ,method:.get ,parameters:param ).responseJSON{ response in
+              switch response.result {
+              case .success(let value):
+                  do {
+                      let data = try JSONSerialization.data(withJSONObject:value, options:.prettyPrinted)
+                      let welcome = try newJSONDecoder().decode(Welcome.self, from: data)
+                      completionHandler(.success(welcome.getJobOpnngInfo?.body?.items?.item))
+                  } catch {
+                      completionHandler(.failure(error))
+                  }
+              case .failure(let error):
+                  print("Request failed with error: \(error)")
+
+                  if let underlyingError = error.underlyingError {
+                      print("Underlying error: \(underlyingError)")
+                  }
+
+                  if let data = response.data, let str = String(data: data, encoding: .utf8) {
+                      print("Server responded with string: \(str)")
+                  }
+              }
+          }
+
+
+
+      }
 }
