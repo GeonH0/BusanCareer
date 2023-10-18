@@ -7,8 +7,11 @@
 
 import UIKit
 import NMapsMap
+import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController,CLLocationManagerDelegate {
+    
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,17 @@ class MapViewController: UIViewController {
         
         view.addSubview(mapNaverView)
         
+//        if CLLocationManager.locationServicesEnabled() {
+//            printContent("위치 서비스 On")
+//            locationManager.startUpdatingLocation()
+//            
+//            print(locationManager.location?.coordinate)
+//                } else {
+//                        print("위치 서비스 Off 상태")
+//                    }
+        
+        
+        
        NSLayoutConstraint.activate([
         mapNaverView.topAnchor.constraint(equalTo: view.topAnchor),
         mapNaverView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -33,4 +47,7 @@ class MapViewController: UIViewController {
         mapNaverView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
        ])
     }
+    
+    
+    
 }

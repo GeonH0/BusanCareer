@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */; };
-		1D5F21D92AB9858900C6B8A7 /* JobListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F21D72AB9858900C6B8A7 /* JobListCell.swift */; };
-		1D5F21DA2AB9858900C6B8A7 /* JobListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5F21D82AB9858900C6B8A7 /* JobListCell.xib */; };
 		1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B60D72AB099DD00650B87 /* MapViewController.swift */; };
 		1DC2669D2AB196B40043AF2C /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC2669C2AB196B40043AF2C /* Jobs.swift */; };
 		1DCF69432AAFFA9600A19419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69422AAFFA9600A19419 /* AppDelegate.swift */; };
@@ -20,6 +18,7 @@
 		1DCF695A2AAFFA9800A19419 /* SeoulCareerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69592AAFFA9800A19419 /* SeoulCareerTests.swift */; };
 		1DCF69642AAFFA9800A19419 /* SeoulCareerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69632AAFFA9800A19419 /* SeoulCareerUITests.swift */; };
 		1DCF69662AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69652AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift */; };
+		1DDA7D702ADFA46900D9F4E8 /* JobListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */; };
 		53687FCDE42C4A05A6BC39AC /* Pods_SeoulCareer_SeoulCareerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B8527720E0AA757681BA43 /* Pods_SeoulCareer_SeoulCareerUITests.framework */; };
 		7790F0BB137518CCF13B297C /* Pods_SeoulCareerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7158E7B15E267F27BC35CF9F /* Pods_SeoulCareerTests.framework */; };
 		D740E1E3BA545F57A58CFB42 /* Pods_SeoulCareer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8A52D95B4ABCB2A1FF73F2 /* Pods_SeoulCareer.framework */; };
@@ -44,8 +43,6 @@
 
 /* Begin PBXFileReference section */
 		1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewContoroller.swift; sourceTree = "<group>"; };
-		1D5F21D72AB9858900C6B8A7 /* JobListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListCell.swift; sourceTree = "<group>"; };
-		1D5F21D82AB9858900C6B8A7 /* JobListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobListCell.xib; sourceTree = "<group>"; };
 		1D6B60D72AB099DD00650B87 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1DC2669C2AB196B40043AF2C /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
 		1DCF693F2AAFFA9600A19419 /* SeoulCareer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeoulCareer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +57,7 @@
 		1DCF695F2AAFFA9800A19419 /* SeoulCareerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeoulCareerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCF69632AAFFA9800A19419 /* SeoulCareerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulCareerUITests.swift; sourceTree = "<group>"; };
 		1DCF69652AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulCareerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListCell.swift; sourceTree = "<group>"; };
 		2A8A52D95B4ABCB2A1FF73F2 /* Pods_SeoulCareer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeoulCareer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		476AECBB649C123B48F8EA3F /* Pods-SeoulCareer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeoulCareer.release.xcconfig"; path = "Target Support Files/Pods-SeoulCareer/Pods-SeoulCareer.release.xcconfig"; sourceTree = "<group>"; };
 		491FD66D3487F892CE827624 /* Pods-SeoulCareerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeoulCareerTests.release.xcconfig"; path = "Target Support Files/Pods-SeoulCareerTests/Pods-SeoulCareerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -127,9 +125,8 @@
 				1DCF69422AAFFA9600A19419 /* AppDelegate.swift */,
 				1DCF69442AAFFA9600A19419 /* SceneDelegate.swift */,
 				1DCF69482AAFFA9600A19419 /* Main.storyboard */,
-				1D5F21D72AB9858900C6B8A7 /* JobListCell.swift */,
-				1D5F21D82AB9858900C6B8A7 /* JobListCell.xib */,
 				1D6B60D72AB099DD00650B87 /* MapViewController.swift */,
+				1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */,
 				1DC2669C2AB196B40043AF2C /* Jobs.swift */,
 				1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */,
 				1DCF694B2AAFFA9700A19419 /* Assets.xcassets */,
@@ -291,7 +288,6 @@
 				1DCF694F2AAFFA9700A19419 /* LaunchScreen.storyboard in Resources */,
 				1DCF694C2AAFFA9700A19419 /* Assets.xcassets in Resources */,
 				1DCF694A2AAFFA9600A19419 /* Main.storyboard in Resources */,
-				1D5F21DA2AB9858900C6B8A7 /* JobListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DCF69432AAFFA9600A19419 /* AppDelegate.swift in Sources */,
-				1D5F21D92AB9858900C6B8A7 /* JobListCell.swift in Sources */,
+				1DDA7D702ADFA46900D9F4E8 /* JobListCell.swift in Sources */,
 				1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */,
 				1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */,
 				1DCF69452AAFFA9600A19419 /* SceneDelegate.swift in Sources */,

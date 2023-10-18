@@ -10,7 +10,7 @@ class ListViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.tableView.register(JobListCell.self, forCellReuseIdentifier: "Cell")
         
         self.fetchJobOverview(completionHandler: {[weak self] result in
             guard let self = self else {return}
@@ -29,17 +29,22 @@ class ListViewController : UITableViewController {
         })
     }
     
+    
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobs.count
     }
+    
+    
+    
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JobListCell", for: indexPath) as! JobListCell
         
-        let job = jobs[indexPath.row]
+            let job = jobs[indexPath.row]
         
-         cell.textLabel?.text = job.title
-        
+            cell.configure(with: job)
          return cell
      }
 
@@ -55,7 +60,7 @@ class ListViewController : UITableViewController {
 
           let param : [String : Any]  =
               ["serviceKey" : serviceKey,
-               "numOfRows" : "10",
+               "numOfRows" : "30",
                "pageNo" : "1",
                "resultType" : "json"]
           
