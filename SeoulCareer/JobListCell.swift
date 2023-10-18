@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class JobListCell: UITableViewCell {
 
@@ -27,23 +28,23 @@ class JobListCell: UITableViewCell {
         AgencyNameLabel.font = .systemFont(ofSize: 14, weight: .light)
         AgencyNameLabel.textColor  = .systemBlue
         AgencyNameLabel.numberOfLines = 0
+        
+        
+        TitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(10) // 상단 여백 10
+            $0.leading.trailing.equalToSuperview().inset(20) // 좌우 여백 20
+        }
+
+        AgencyNameLabel.snp.makeConstraints {
+            $0.top.equalTo(TitleLabel.snp.bottom).offset(5) // TitleLabel 아래로 5 위치
+            $0.leading.trailing.equalTo(TitleLabel) // 좌우는 TitleLable과 동일하게 설정
+            $0.bottom.lessThanOrEqualToSuperview().offset(-10) // 하단 여백 최대 10 (내용에 따라 셀 크기가 유동적으로 변하도록)
+        }
+
+
     }
     
-    TitleLabel.snp.makeConstraints {
-        $0.leading.equalTo(beerImageView.snp.trailing).offset(10)
-        $0.bottom.equalTo(beerImageView.snp.centerY)
-        $0.trailing.equalToSuperview().inset(20)
-    }
-    AgencyNameLabel.snp.makeConstraints {
-        $0.leading.trailing.equalTo(nameLabel)
-        $0.top.equalTo(nameLabel.snp.bottom).offset(5)
-    }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     
     func configure(with job: Item ){

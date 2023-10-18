@@ -10,7 +10,7 @@ class ListViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.register(JobListCell.self, forCellReuseIdentifier: "Cell")
+        self.tableView.register(JobListCell.self, forCellReuseIdentifier: "JobListCell")
         
         self.fetchJobOverview(completionHandler: {[weak self] result in
             guard let self = self else {return}
