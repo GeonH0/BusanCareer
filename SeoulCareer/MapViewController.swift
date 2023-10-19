@@ -24,11 +24,15 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
         mapNaverView.mapView.isRotateGestureEnabled = true
         mapNaverView.mapView.isStopGestureEnabled = true
         
-        // Auto Layout 사용을 위해 필요함.
+//        // Auto Layout 사용을 위해 필요함.
         mapNaverView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(mapNaverView)
         
+//        locationManager.delegate = self
+//                locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//                locationManager.requestWhenInUseAuthorization()
+//        
 //        if CLLocationManager.locationServicesEnabled() {
 //            printContent("위치 서비스 On")
 //            locationManager.startUpdatingLocation()
