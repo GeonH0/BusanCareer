@@ -47,6 +47,21 @@ class ListViewController : UITableViewController {
             cell.configure(with: job)
          return cell
      }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        guard let detailViewController = storyboard.instantiateViewController(identifier: "JobDetailViewController") as? JobDetailViewController else { return }
+        
+        detailViewController.Job = jobs[indexPath.row]
+        self.show(detailViewController,sender: nil)
+        
+        
+        
+        
+        
+    }
 
      func fetchJobOverview(
           completionHandler : @escaping (Result <[Item]?, Error>) -> Void

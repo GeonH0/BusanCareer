@@ -61,6 +61,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="44.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="s2J-Ns-xum" kind="show" id="QN8-43-JcP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -73,6 +76,116 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8L-WE-UWf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1298" y="-765"/>
+        </scene>
+        <!--Job Detail View Controller-->
+        <scene sceneID="ATN-U9-ZeD">
+            <objects>
+                <viewController storyboardIdentifier="JobDetailViewController" id="s2J-Ns-xum" customClass="JobDetailViewController" customModule="SeoulCareer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KXU-28-dDe">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="gPb-Uf-cI3">
+                                <rect key="frame" x="20" y="371" width="353" height="254.66666666666663"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023년 사상구 보건소 모자보건사업 기간제근로자 채용공고" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZv-G4-fU6">
+                                        <rect key="frame" x="32.333333333333343" y="0.0" width="288.66666666666663" height="48"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Njd-sU-HAk">
+                                        <rect key="frame" x="108.66666666666666" y="78" width="136" height="21.666666666666671"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="기관명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBj-fH-axM">
+                                                <rect key="frame" x="0.0" y="0.0" width="47" height="21.666666666666668"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사상구청" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCL-c0-jjn">
+                                                <rect key="frame" x="77" y="0.0" width="59" height="21.666666666666668"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-Tp-yWN">
+                                        <rect key="frame" x="101.00000000000001" y="129.66666666666669" width="151.33333333333337" height="21.666666666666657"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="지원방법" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bb8-xe-iOB">
+                                                <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="21.666666666666668"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사상구청" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DK1-Mj-NQC">
+                                                <rect key="frame" x="92.333333333333343" y="0.0" width="59" height="21.666666666666668"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="eWF-0b-jfV">
+                                        <rect key="frame" x="101.00000000000001" y="181.33333333333337" width="151.33333333333337" height="21.666666666666657"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="마감일자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRJ-mf-pCI">
+                                                <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="21.666666666666668"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사상구청" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQw-FI-aPs">
+                                                <rect key="frame" x="92.333333333333343" y="0.0" width="59" height="21.666666666666668"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="8i9-qV-YSP">
+                                        <rect key="frame" x="116.33333333333334" y="233" width="120.33333333333334" height="21.666666666666657"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="분야" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WnE-gv-q9Y">
+                                                <rect key="frame" x="0.0" y="0.0" width="31.333333333333332" height="21.666666666666668"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사상구청" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xyz-tT-Cou">
+                                                <rect key="frame" x="61.333333333333314" y="0.0" width="59" height="21.666666666666668"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ytV-Q2-s3S"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gPb-Uf-cI3" firstAttribute="leading" secondItem="ytV-Q2-s3S" secondAttribute="leading" constant="20" id="Fii-5M-C9f"/>
+                            <constraint firstItem="eWF-0b-jfV" firstAttribute="centerX" secondItem="ytV-Q2-s3S" secondAttribute="centerX" id="Ltl-Gl-aSz"/>
+                            <constraint firstItem="ytV-Q2-s3S" firstAttribute="trailing" secondItem="gPb-Uf-cI3" secondAttribute="trailing" constant="20" id="ViW-Ul-bLo"/>
+                            <constraint firstItem="gPb-Uf-cI3" firstAttribute="top" secondItem="ytV-Q2-s3S" secondAttribute="top" constant="268" id="kat-Do-FoP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="O1e-c3-gwg"/>
+                    <connections>
+                        <outlet property="AgencyName" destination="DCL-c0-jjn" id="Leu-QG-9WV"/>
+                        <outlet property="JobTitleLabel" destination="dZv-G4-fU6" id="Yjl-iN-2Q9"/>
+                        <outlet property="bunya" destination="Xyz-tT-Cou" id="4dL-DK-yZk"/>
+                        <outlet property="endDate" destination="SQw-FI-aPs" id="jZ4-wm-HsZ"/>
+                        <outlet property="reqType" destination="DK1-Mj-NQC" id="F20-RU-4Zl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ubb-ST-Fqx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2274.0458015267172" y="-780.28169014084506"/>
         </scene>
         <!--MAP-->
         <scene sceneID="ScK-5K-g3N">

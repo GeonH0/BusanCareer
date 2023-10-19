@@ -75,7 +75,7 @@ struct Items: Codable {
 
 // MARK: - Item
 struct Item: Codable {
-    let title, recruitAgencyName, recruitAgencyType, mngDept: String?
+    let title, recruitAgencyName, recruitAgencyType, mngDept: String
     let mngName, bunya, workDateType, workDateNm: String?
     let workregiontxt, reqDateS, reqDateE, reqType: String?
     let reqTypeNm, regDate, modDate: String?

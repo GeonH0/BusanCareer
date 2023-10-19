@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D280A242AE0AAA600C2FCAA /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */; };
 		1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */; };
 		1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B60D72AB099DD00650B87 /* MapViewController.swift */; };
 		1DC2669D2AB196B40043AF2C /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC2669C2AB196B40043AF2C /* Jobs.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
 		1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewContoroller.swift; sourceTree = "<group>"; };
 		1D6B60D72AB099DD00650B87 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1DC2669C2AB196B40043AF2C /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				1DCF69482AAFFA9600A19419 /* Main.storyboard */,
 				1D6B60D72AB099DD00650B87 /* MapViewController.swift */,
 				1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */,
+				1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */,
 				1DC2669C2AB196B40043AF2C /* Jobs.swift */,
 				1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */,
 				1DCF694B2AAFFA9700A19419 /* Assets.xcassets */,
@@ -417,6 +420,7 @@
 			files = (
 				1DCF69432AAFFA9600A19419 /* AppDelegate.swift in Sources */,
 				1DDA7D702ADFA46900D9F4E8 /* JobListCell.swift in Sources */,
+				1D280A242AE0AAA600C2FCAA /* JobDetailViewController.swift in Sources */,
 				1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */,
 				1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */,
 				1DCF69452AAFFA9600A19419 /* SceneDelegate.swift in Sources */,
