@@ -4,12 +4,32 @@ import Alamofire
 class ListViewController: UITableViewController {
     var jobs: [Item] = []
     var currentPage = 1 // 현재 페이지 번호
+    var recruitAgencyNames: Set<String> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView.register(JobListCell.self, forCellReuseIdentifier: "JobListCell")
         self.fetchJobOverview() // 초기 페이지 로딩
     }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 44))
+            headerView.backgroundColor = UIColor.lightGray
+
+            let headerLabel = UILabel()
+            headerLabel.text = "헤더 제목"
+            headerLabel.textAlignment = .center
+            headerLabel.frame = headerView.bounds
+            headerView.addSubview(headerLabel)
+
+            return headerView
+        }
+
+        // 헤더 뷰의 높이를 설정합니다.
+        override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return 44.0 // 헤더 뷰의 높이를 조절하세요.
+        }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobs.count
@@ -55,7 +75,14 @@ class ListViewController: UITableViewController {
                         self.jobs += newItems
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
-                        }
+                            
+                            // Extract recruitAgencyName values and add them to the recruitAgencyNames array
+                            let recruitAgencyNameSet: Set<String> = Set(newItems.compactMap { $0.recruitAgencyName })
+                            self.recruitAgencyNames.formUnion(recruitAgencyNameSet)
+
+                                                        
+                                                        // You can print or use recruitAgencyNames as needed
+                            print(self.recruitAgencyNames)                       }
                     }
                 } catch {
                     print("Error decoding response: \(error)")

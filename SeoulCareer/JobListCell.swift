@@ -60,4 +60,6 @@ class JobListCell: UITableViewCell {
         selectionStyle = .none //탭할경우 음영이 발생 하지 않는다.
     }
     
+    
+    
 }
