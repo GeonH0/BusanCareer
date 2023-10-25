@@ -3,33 +3,59 @@ import Alamofire
 
 class ListViewController: UITableViewController {
     var jobs: [Item] = []
-    var currentPage = 1 // 현재 페이지 번호
+    var currentPage = 1
     var recruitAgencyNames: Set<String> = []
+    var sortByDeadline = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView.register(JobListCell.self, forCellReuseIdentifier: "JobListCell")
-        self.fetchJobOverview() // 초기 페이지 로딩
+
+        tableView.register(JobListCell.self, forCellReuseIdentifier: "JobListCell")
+        fetchJobOverview()
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
             let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 44))
             headerView.backgroundColor = UIColor.lightGray
 
-            let headerLabel = UILabel()
-            headerLabel.text = "헤더 제목"
-            headerLabel.textAlignment = .center
-            headerLabel.frame = headerView.bounds
-            headerView.addSubview(headerLabel)
+            let sortButton = UIButton(type: .system)
+            sortButton.setTitle("마감일자순", for: .normal)
+            sortButton.frame = CGRect(x: 20, y: 7, width: 120, height: 30)
+            sortButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
+            headerView.addSubview(sortButton)
 
+            let latestButton = UIButton(type: .system)
+            latestButton.setTitle("최신순", for: .normal)
+            latestButton.frame = CGRect(x: 160, y: 7, width: 100, height: 30)
+            latestButton.addTarget(self, action: #selector(latestButtonTapped), for: .touchUpInside)
+            headerView.addSubview(latestButton)
+    
             return headerView
         }
-
-        // 헤더 뷰의 높이를 설정합니다.
+    
         override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            return 44.0 // 헤더 뷰의 높이를 조절하세요.
+            return 44.0
         }
+
+
+
+    @objc func sortButtonTapped() {
+        if !sortByDeadline {
+            sortByDeadline = true
+            // Reload the table view with the sorting criteria
+            jobs = sortJobsByDeadline()
+            tableView.reloadData()
+        }
+    }
+
+    @objc func latestButtonTapped() {
+        if sortByDeadline {
+            sortByDeadline = false
+            // Reload the table view with the sorting criteria
+            jobs = sortJobsByLatest()
+            tableView.reloadData()
+        }
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobs.count
@@ -46,7 +72,7 @@ class ListViewController: UITableViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let detailViewController = storyboard.instantiateViewController(identifier: "JobDetailViewController") as? JobDetailViewController else { return }
         detailViewController.Job = jobs[indexPath.row]
-        self.show(detailViewController, sender: nil)
+        show(detailViewController, sender: nil)
     }
 
     func fetchJobOverview() {
@@ -101,15 +127,20 @@ class ListViewController: UITableViewController {
         }
     }
 
+    func sortJobsByDeadline() -> [Item] {
+        return jobs.sorted { ($0.reqDateS ?? "") < ($1.reqDateS ?? "") }
+    }
+
+    func sortJobsByLatest() -> [Item] {
+        return jobs.sorted { ($0.regDate ?? "") > ($1.regDate ?? "") }
+    }
+
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         if offsetY > contentHeight - scrollView.frame.size.height {
-            // 사용자가 스크롤을 마지막까지 내린 경우
             currentPage += 1
-            fetchJobOverview() // 다음 페이지를 요청
+            fetchJobOverview()
         }
     }
-    
-    
 }
