@@ -5,14 +5,41 @@ class ListViewController: UITableViewController {
     var jobs: [Item] = []
     var currentPage = 1
     var recruitAgencyNames: Set<String> = []
-    var sortByDeadline = true
+    var activityIndicator = UIActivityIndicatorView()
+    var sections: [Section] = []
+
+    
+    enum SortType {
+        case deadline
+        case latest
+        case bySection
+    }
+    
+    struct Section {
+        var sectionTitle: String
+        var items: [Item]
+    }
+
+    var sortType: SortType = .deadline // 초기 정렬 유형 설정
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.register(JobListCell.self, forCellReuseIdentifier: "JobListCell")
+        // 액티비티 인디케이터 설정
+        activityIndicator.style = .large
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+
         fetchJobOverview()
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].sectionTitle
+    }
+    
+
     
         override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
             let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 44))
@@ -31,6 +58,13 @@ class ListViewController: UITableViewController {
             latestButton.addTarget(self, action: #selector(latestButtonTapped), for: .touchUpInside)
             latestButton.layer.cornerRadius = 15
             headerView.addSubview(latestButton)
+            
+            let sectiontButton = UIButton(type: .system)
+            sectiontButton.setTitle("구역별", for: .normal)
+            sectiontButton.frame = CGRect(x: 260, y: 7, width: 100, height: 30)
+            sectiontButton.addTarget(self, action: #selector(sectionButtonTapped), for: .touchUpInside)
+            sectiontButton.layer.cornerRadius = 15
+            headerView.addSubview(sectiontButton)
     
             return headerView
         }
@@ -42,8 +76,8 @@ class ListViewController: UITableViewController {
 
 
     @objc func sortButtonTapped() {
-        if !sortByDeadline {
-            sortByDeadline = true
+        if sortType != .deadline {
+            sortType = .deadline
             // Reload the table view with the sorting criteria
             jobs = sortJobsByDeadline()
             tableView.reloadData()
@@ -54,8 +88,8 @@ class ListViewController: UITableViewController {
     }
 
     @objc func latestButtonTapped() {
-        if sortByDeadline {
-            sortByDeadline = false
+        if sortType != .latest {
+            sortType = .latest
             // Reload the table view with the sorting criteria
             jobs = sortJobsByLatest()
             tableView.reloadData()
@@ -64,6 +98,18 @@ class ListViewController: UITableViewController {
             scrollToTopIfNeeded()
         }
     }
+    
+    @objc func sectionButtonTapped() {
+        if sortType != .bySection {
+            sortType = .bySection
+            sections = createSections(from: jobs) // 데이터를 구역별로 정렬하고 sections 배열에 할당
+            tableView.reloadData()
+            scrollToTopIfNeeded()
+        } else {
+            scrollToTopIfNeeded()
+        }
+    }
+
     
     func scrollToTopIfNeeded() {
         let indexPath = IndexPath(row: 0, section: 0) // 상단 셀의 IndexPath
@@ -104,8 +150,15 @@ class ListViewController: UITableViewController {
             "pageNo": "\(currentPage)", // 현재 페이지 번호 사용
             "resultType": "json"
         ]
+        
+        // 데이터 가져오기 시작 전에 액티비티 인디케이터 시작
+        activityIndicator.startAnimating()
+
 
         AF.request(url, method: .get, parameters: param).responseJSON { response in
+            
+            
+            self.activityIndicator.stopAnimating() // 데이터 가져오기 후 액티비티 인디케이터 중지
             switch response.result {
             case .success(let value):
                 do {
@@ -114,6 +167,8 @@ class ListViewController: UITableViewController {
                     if let newItems = welcome.getJobOpnngInfo?.body?.items?.item {
                         // 새로운 페이지의 데이터를 기존 데이터에 추가
                         self.jobs += newItems
+                        self.sections = self.createSections(from: self.jobs)
+                        
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
                             
@@ -123,7 +178,7 @@ class ListViewController: UITableViewController {
 
                                                         
                                                         // You can print or use recruitAgencyNames as needed
-                            print(self.recruitAgencyNames)                       }
+                            /*print(self.recruitAgencyNames)*/                       }
                     }
                 } catch {
                     print("Error decoding response: \(error)")
@@ -158,4 +213,44 @@ class ListViewController: UITableViewController {
             fetchJobOverview()
         }
     }
+    
+    func createSections(from jobs: [Item]) -> [Section] {
+           // Define the list of target areas
+           let targetAreas = [
+               "중구", "서구", "동구", "영도구", "부산진구", "동래구", "남구", "북구",
+               "해운대구", "사하구", "금정구", "강서구", "연제구", "수영구", "사상구", "기장군"
+           ]
+       
+           var sections: [Section] = []
+           var otherSection: Section?
+       
+           // Initialize otherSection for jobs not in the target areas
+           otherSection = Section(sectionTitle: "기타", items: [])
+       
+        for job in jobs {
+            if targetAreas.contains(job.recruitAgencyName ?? "") {
+                // Find the matching section and add the job to it
+                if let sectionIndex = sections.firstIndex(where: { $0.sectionTitle == job.recruitAgencyName }) {
+                    sections[sectionIndex].items.append(job)
+                    
+                } else {
+                    sections.append(Section(sectionTitle: job.recruitAgencyName, items: [job]))
+                }
+            } else {
+                // Add the job to the "기타" section
+                otherSection?.items.append(job)
+                print("Job with recruitAgencyName '\(job.recruitAgencyName ?? "nil")' goes to '기타' section.")
+            }
+        }
+
+
+       
+           // Filter out empty sections and add the "기타" section if it contains items
+           sections = sections.filter { !$0.items.isEmpty }
+           if let otherSection = otherSection, !otherSection.items.isEmpty {
+               sections.append(otherSection)
+           }
+       
+           return sections
+       }
 }
