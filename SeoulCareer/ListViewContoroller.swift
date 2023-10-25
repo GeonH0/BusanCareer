@@ -16,11 +16,12 @@ class ListViewController: UITableViewController {
     
         override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
             let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 44))
-            headerView.backgroundColor = UIColor.lightGray
+            headerView.backgroundColor = UIColor.white
 
             let sortButton = UIButton(type: .system)
             sortButton.setTitle("마감일자순", for: .normal)
             sortButton.frame = CGRect(x: 20, y: 7, width: 120, height: 30)
+            sortButton.layer.cornerRadius = 15
             sortButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
             headerView.addSubview(sortButton)
 
@@ -28,6 +29,7 @@ class ListViewController: UITableViewController {
             latestButton.setTitle("최신순", for: .normal)
             latestButton.frame = CGRect(x: 160, y: 7, width: 100, height: 30)
             latestButton.addTarget(self, action: #selector(latestButtonTapped), for: .touchUpInside)
+            latestButton.layer.cornerRadius = 15
             headerView.addSubview(latestButton)
     
             return headerView
@@ -45,6 +47,9 @@ class ListViewController: UITableViewController {
             // Reload the table view with the sorting criteria
             jobs = sortJobsByDeadline()
             tableView.reloadData()
+            scrollToTopIfNeeded()
+        } else {
+            scrollToTopIfNeeded()
         }
     }
 
@@ -54,6 +59,16 @@ class ListViewController: UITableViewController {
             // Reload the table view with the sorting criteria
             jobs = sortJobsByLatest()
             tableView.reloadData()
+            scrollToTopIfNeeded()
+        } else {
+            scrollToTopIfNeeded()
+        }
+    }
+    
+    func scrollToTopIfNeeded() {
+        let indexPath = IndexPath(row: 0, section: 0) // 상단 셀의 IndexPath
+        if jobs.count > 0 {
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
     }
 
