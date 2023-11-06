@@ -41,33 +41,44 @@ class ListViewController: UITableViewController {
     
 
     
-        override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 44))
-            headerView.backgroundColor = UIColor.white
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 44))
+        headerView.backgroundColor = UIColor.white
 
-            let sortButton = UIButton(type: .system)
-            sortButton.setTitle("마감일자순", for: .normal)
-            sortButton.frame = CGRect(x: 20, y: 7, width: 120, height: 30)
-            sortButton.layer.cornerRadius = 15
-            sortButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
-            headerView.addSubview(sortButton)
+        let buttonWidth: CGFloat = 100 // 버튼의 폭
+        let buttonHeight: CGFloat = 30 // 버튼의 높이
+        let buttonSpacing: CGFloat = 10 // 버튼 간격
 
-            let latestButton = UIButton(type: .system)
-            latestButton.setTitle("최신순", for: .normal)
-            latestButton.frame = CGRect(x: 160, y: 7, width: 100, height: 30)
-            latestButton.addTarget(self, action: #selector(latestButtonTapped), for: .touchUpInside)
-            latestButton.layer.cornerRadius = 15
-            headerView.addSubview(latestButton)
-            
-            let sectiontButton = UIButton(type: .system)
-            sectiontButton.setTitle("구역별", for: .normal)
-            sectiontButton.frame = CGRect(x: 260, y: 7, width: 100, height: 30)
-            sectiontButton.addTarget(self, action: #selector(sectionButtonTapped), for: .touchUpInside)
-            sectiontButton.layer.cornerRadius = 15
-            headerView.addSubview(sectiontButton)
-    
-            return headerView
-        }
+        let totalButtonWidth = (buttonWidth * 3) + (buttonSpacing * 2) // 버튼 3개와 간격의 총 폭
+
+        // 첫 번째 버튼
+        let sortButton = UIButton(type: .system)
+        sortButton.setTitle("마감일자순", for: .normal)
+        sortButton.frame = CGRect(x: (tableView.frame.size.width - totalButtonWidth) / 2, y: 7, width: buttonWidth, height: buttonHeight)
+        sortButton.layer.cornerRadius = 15
+        sortButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
+        headerView.addSubview(sortButton)
+
+        // 두 번째 버튼
+        let latestButton = UIButton(type: .system)
+        latestButton.setTitle("최신순", for: .normal)
+        latestButton.frame = CGRect(x: sortButton.frame.maxX + buttonSpacing, y: 7, width: buttonWidth, height: buttonHeight)
+        latestButton.layer.cornerRadius = 15
+        latestButton.addTarget(self, action: #selector(latestButtonTapped), for: .touchUpInside)
+        headerView.addSubview(latestButton)
+
+        // 세 번째 버튼
+        let sectionButton = UIButton(type: .system)
+        sectionButton.setTitle("구역별", for: .normal)
+        sectionButton.frame = CGRect(x: latestButton.frame.maxX + buttonSpacing, y: 7, width: buttonWidth, height: buttonHeight)
+        sectionButton.addTarget(self, action: #selector(sectionButtonTapped), for: .touchUpInside)
+        sectionButton.layer.cornerRadius = 15
+        headerView.addSubview(sectionButton)
+
+        return headerView
+    }
+
+
     
         override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
             return 44.0
