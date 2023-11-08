@@ -121,6 +121,7 @@ class ListViewController: UITableViewController {
         }
     }
 
+
     
     func scrollToTopIfNeeded() {
         let indexPath = IndexPath(row: 0, section: 0) // 상단 셀의 IndexPath
@@ -247,16 +248,20 @@ class ListViewController: UITableViewController {
            var sections: [Section] = []
            var otherSection: Section?
        
-           // Initialize otherSection for jobs not in the target areas
-           otherSection = Section(sectionTitle: "기타", items: [])
+
+        // Initialize otherSection for jobs not in the target areas
+        otherSection = Section(sectionTitle: "기타", items: [])
+
        
         for job in jobs {
-            if targetAreas.contains(where: { job.recruitAgencyName.hasPrefix($0) }) {
+            if targetAreas.contains(where: { job.recruitAgencyName.range(of: $0, options: .caseInsensitive) != nil }) {
                 // Find the matching section and add the job to it
                 if let sectionIndex = sections.firstIndex(where: { $0.sectionTitle == job.recruitAgencyName }) {
                     sections[sectionIndex].items.append(job)
+                    
                 } else {
                     sections.append(Section(sectionTitle: job.recruitAgencyName ?? "", items: [job]))
+                    
                 }
             } else {
                 // Add the job to the "기타" section
@@ -264,6 +269,8 @@ class ListViewController: UITableViewController {
                 print("Job with recruitAgencyName '\(job.recruitAgencyName ?? "nil")' goes to '기타' section.")
             }
         }
+
+
        
            // Filter out empty sections and add the "기타" section if it contains items
            sections = sections.filter { !$0.items.isEmpty }
