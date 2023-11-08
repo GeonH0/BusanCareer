@@ -209,8 +209,20 @@ class ListViewController: UITableViewController {
     }
 
     func sortJobsByDeadline() -> [Item] {
-        return jobs.sorted { ($0.reqDateS ?? "") < ($1.reqDateS ?? "") }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+        return jobs.sorted { (item1, item2) in
+            if let date1 = dateFormatter.date(from: item1.reqDateE ?? ""),
+               let date2 = dateFormatter.date(from: item2.reqDateE ?? "") {
+                return date1 < date2
+            } else {
+                return false
+            }
+        }
     }
+
+
 
     func sortJobsByLatest() -> [Item] {
         return jobs.sorted { ($0.regDate ?? "") > ($1.regDate ?? "") }
@@ -229,7 +241,7 @@ class ListViewController: UITableViewController {
            // Define the list of target areas
            let targetAreas = [
                "중구", "서구", "동구", "영도구", "부산진구", "동래구", "남구", "북구",
-               "해운대구", "사하구", "금정구", "강서구", "연제구", "수영구", "사상구", "기장군"
+               "해운대구", "사하구", "금정구", "강서구", "연제구", "수영구", "사상구", "기장"
            ]
        
            var sections: [Section] = []
@@ -239,13 +251,12 @@ class ListViewController: UITableViewController {
            otherSection = Section(sectionTitle: "기타", items: [])
        
         for job in jobs {
-            if targetAreas.contains(job.recruitAgencyName ?? "") {
+            if targetAreas.contains(where: { job.recruitAgencyName.hasPrefix($0) }) {
                 // Find the matching section and add the job to it
                 if let sectionIndex = sections.firstIndex(where: { $0.sectionTitle == job.recruitAgencyName }) {
                     sections[sectionIndex].items.append(job)
-                    
                 } else {
-                    sections.append(Section(sectionTitle: job.recruitAgencyName, items: [job]))
+                    sections.append(Section(sectionTitle: job.recruitAgencyName ?? "", items: [job]))
                 }
             } else {
                 // Add the job to the "기타" section
@@ -253,8 +264,6 @@ class ListViewController: UITableViewController {
                 print("Job with recruitAgencyName '\(job.recruitAgencyName ?? "nil")' goes to '기타' section.")
             }
         }
-
-
        
            // Filter out empty sections and add the "기타" section if it contains items
            sections = sections.filter { !$0.items.isEmpty }

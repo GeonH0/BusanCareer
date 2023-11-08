@@ -49,8 +49,7 @@ class JobListCell: UITableViewCell {
     
     func configure(with job: Item ){
         
-        
-        
+                
         
         TitleLabel.text = job.title ?? "제목 없음"
         AgencyNameLabel.text = job.recruitAgencyName ?? "정보 없음"
