@@ -19,6 +19,7 @@
 		1DCF695A2AAFFA9800A19419 /* SeoulCareerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69592AAFFA9800A19419 /* SeoulCareerTests.swift */; };
 		1DCF69642AAFFA9800A19419 /* SeoulCareerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69632AAFFA9800A19419 /* SeoulCareerUITests.swift */; };
 		1DCF69662AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69652AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift */; };
+		1DD28E3F2AFDF9D70018A786 /* JobDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD28E3E2AFDF9D70018A786 /* JobDataFetch.swift */; };
 		1DDA7D702ADFA46900D9F4E8 /* JobListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */; };
 		53687FCDE42C4A05A6BC39AC /* Pods_SeoulCareer_SeoulCareerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B8527720E0AA757681BA43 /* Pods_SeoulCareer_SeoulCareerUITests.framework */; };
 		7790F0BB137518CCF13B297C /* Pods_SeoulCareerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7158E7B15E267F27BC35CF9F /* Pods_SeoulCareerTests.framework */; };
@@ -59,6 +60,7 @@
 		1DCF695F2AAFFA9800A19419 /* SeoulCareerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeoulCareerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCF69632AAFFA9800A19419 /* SeoulCareerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulCareerUITests.swift; sourceTree = "<group>"; };
 		1DCF69652AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulCareerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1DD28E3E2AFDF9D70018A786 /* JobDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDataFetch.swift; sourceTree = "<group>"; };
 		1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListCell.swift; sourceTree = "<group>"; };
 		2A8A52D95B4ABCB2A1FF73F2 /* Pods_SeoulCareer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeoulCareer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		476AECBB649C123B48F8EA3F /* Pods-SeoulCareer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeoulCareer.release.xcconfig"; path = "Target Support Files/Pods-SeoulCareer/Pods-SeoulCareer.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */,
 				1DC2669C2AB196B40043AF2C /* Jobs.swift */,
 				1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */,
+				1DD28E3E2AFDF9D70018A786 /* JobDataFetch.swift */,
 				1DCF694B2AAFFA9700A19419 /* Assets.xcassets */,
 				1DCF694D2AAFFA9700A19419 /* LaunchScreen.storyboard */,
 				1DCF69502AAFFA9700A19419 /* Info.plist */,
@@ -422,6 +425,7 @@
 				1DDA7D702ADFA46900D9F4E8 /* JobListCell.swift in Sources */,
 				1D280A242AE0AAA600C2FCAA /* JobDetailViewController.swift in Sources */,
 				1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */,
+				1DD28E3F2AFDF9D70018A786 /* JobDataFetch.swift in Sources */,
 				1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */,
 				1DCF69452AAFFA9600A19419 /* SceneDelegate.swift in Sources */,
 				1DC2669D2AB196B40043AF2C /* Jobs.swift in Sources */,
