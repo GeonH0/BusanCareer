@@ -9,7 +9,7 @@ class ListViewController: UITableViewController {
     var recruitAgencyNames: Set<String> = []
     var activityIndicator = UIActivityIndicatorView()
     var sections: [Section] = []
-
+    
     
     enum SortType {
         case deadline
@@ -21,80 +21,80 @@ class ListViewController: UITableViewController {
         var sectionTitle: String
         var items: [Item]
     }
-
+    
     var sortType: SortType = .deadline // 초기 정렬 유형 설정
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // 커스텀 헤더 뷰 생성
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 88))
         
-
+        
         // UISearchBar 인스턴스 생성
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.placeholder = "공고를 검색해 보세요!"
         headerView.addSubview(searchBar)
-
+        
         // 검색창 Auto Layout 설정
         NSLayoutConstraint.activate([
             searchBar.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
             searchBar.topAnchor.constraint(equalTo: headerView.topAnchor)
         ])
-
+        
         // 첫 번째 버튼 생성
         let sortButton = UIButton(type: .system)
         sortButton.translatesAutoresizingMaskIntoConstraints = false
         sortButton.setTitle("마감일자순", for: .normal)
         sortButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
         headerView.addSubview(sortButton)
-
+        
         // 두 번째 버튼 생성
         let latestButton = UIButton(type: .system)
         latestButton.translatesAutoresizingMaskIntoConstraints = false
         latestButton.setTitle("최신순", for: .normal)
         latestButton.addTarget(self, action: #selector(latestButtonTapped), for: .touchUpInside)
         headerView.addSubview(latestButton)
-
+        
         // 세 번째 버튼 생성
         let sectionButton = UIButton(type: .system)
         sectionButton.translatesAutoresizingMaskIntoConstraints = false
         sectionButton.setTitle("구역별", for: .normal)
         sectionButton.addTarget(self, action: #selector(sectionButtonTapped), for: .touchUpInside)
         headerView.addSubview(sectionButton)
-
+        
         
         // 버튼 Auto Layout 설정
         NSLayoutConstraint.activate([
             sortButton.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
             sortButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             sortButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3),
-
+            
             latestButton.leadingAnchor.constraint(equalTo: sortButton.trailingAnchor),
             latestButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             latestButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3),
-
+            
             sectionButton.leadingAnchor.constraint(equalTo: latestButton.trailingAnchor),
             sectionButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             sectionButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3),
             sectionButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
             sectionButton.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)
         ])
-
-
+        
+        
         // 테이블 뷰 헤더에 커스텀 헤더 뷰 설정
         tableView.tableHeaderView = headerView
-
+        
         tableView.register(JobListCell.self, forCellReuseIdentifier: "JobListCell")
-
+        
         // 액티비티 인디케이터 설정
         activityIndicator.style = .large
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
-
+        
         dataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
             guard let self = self else { return }
             self.jobs = fetchedJobs
@@ -103,14 +103,14 @@ class ListViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-
+        
         
         searchBar.delegate = self
         
     }
-
     
-
+    
+    
     @objc func sortButtonTapped() {
         if sortType != .deadline {
             sortType = .deadline
@@ -122,7 +122,7 @@ class ListViewController: UITableViewController {
             scrollToTopIfNeeded()
         }
     }
-
+    
     @objc func latestButtonTapped() {
         if sortType != .latest {
             sortType = .latest
@@ -145,8 +145,8 @@ class ListViewController: UITableViewController {
             scrollToTopIfNeeded()
         }
     }
-
-
+    
+    
     
     func scrollToTopIfNeeded() {
         let indexPath = IndexPath(row: 0, section: 0) // 상단 셀의 IndexPath
@@ -154,31 +154,40 @@ class ListViewController: UITableViewController {
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
     }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return sortType == .bySection ? sections.count : 1
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return jobs.count
+        return sortType == .bySection ? sections[section].items.count : jobs.count
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sortType == .bySection ? sections[section].sectionTitle : nil
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "JobListCell", for: indexPath) as! JobListCell
-        let job = jobs[indexPath.row]
+        let job = sortType == .bySection ? sections[indexPath.section].items[indexPath.row] : jobs[indexPath.row]
         cell.configure(with: job)
         return cell
     }
 
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let detailViewController = storyboard.instantiateViewController(identifier: "JobDetailViewController") as? JobDetailViewController else { return }
         detailViewController.Job = jobs[indexPath.row]
         show(detailViewController, sender: nil)
     }
-
-
-
+    
+    
+    
     func sortJobsByDeadline() -> [Item] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-
+        
         return jobs.sorted { (item1, item2) in
             if let date1 = dateFormatter.date(from: item1.reqDateE ?? ""),
                let date2 = dateFormatter.date(from: item2.reqDateE ?? "") {
@@ -188,13 +197,13 @@ class ListViewController: UITableViewController {
             }
         }
     }
-
-
-
+    
+    
+    
     func sortJobsByLatest() -> [Item] {
         return jobs.sorted { ($0.regDate ?? "") > ($1.regDate ?? "") }
     }
-
+    
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -209,51 +218,38 @@ class ListViewController: UITableViewController {
             }
         }
     }
-
-
+    
+    
     
     func createSections(from jobs: [Item]) -> [Section] {
-           // Define the list of target areas
-           let targetAreas = [
-               "중구", "서구", "동구", "영도구", "부산진구", "동래구", "남구", "북구",
-               "해운대구", "사하구", "금정구", "강서구", "연제구", "수영구", "사상구", "기장"
-           ]
-       
-           var sections: [Section] = []
-           var otherSection: Section?
-       
-
-        // Initialize otherSection for jobs not in the target areas
-        otherSection = Section(sectionTitle: "기타", items: [])
-
-       
+        let targetAreas = [
+            "중구", "서구", "동구", "영도구", "부산진구", "동래구", "남구", "북구",
+            "해운대구", "사하구", "금정구", "강서구", "연제구", "수영구", "사상구", "기장"
+        ]
+        
+        var sections: [Section] = targetAreas.map { Section(sectionTitle: $0, items: []) }
+        var otherSection = Section(sectionTitle: "기타", items: [])
+        
         for job in jobs {
-            if targetAreas.contains(where: { job.recruitAgencyName.range(of: $0, options: .caseInsensitive) != nil }) {
-                // Find the matching section and add the job to it
-                if let sectionIndex = sections.firstIndex(where: { $0.sectionTitle == job.recruitAgencyName }) {
+            if let targetArea = targetAreas.first(where: { job.recruitAgencyName.contains($0) }) {
+                if let sectionIndex = sections.firstIndex(where: { $0.sectionTitle == targetArea }) {
                     sections[sectionIndex].items.append(job)
-                    
-                } else {
-                    sections.append(Section(sectionTitle: job.recruitAgencyName ?? "", items: [job]))
                     
                 }
             } else {
-                // Add the job to the "기타" section
-                otherSection?.items.append(job)
+                otherSection.items.append(job)
                 print("Job with recruitAgencyName '\(job.recruitAgencyName ?? "nil")' goes to '기타' section.")
             }
         }
-
-
-       
-           
-           sections = sections.filter { !$0.items.isEmpty }
-           if let otherSection = otherSection, !otherSection.items.isEmpty {
-               sections.append(otherSection)
-           }
-       
-           return sections
-       }
+        
+        sections = sections.filter { !$0.items.isEmpty }
+        if !otherSection.items.isEmpty {
+            sections.append(otherSection)
+        }
+        
+        
+        return sections
+    }
 }
 
 extension ListViewController: UISearchBarDelegate {
