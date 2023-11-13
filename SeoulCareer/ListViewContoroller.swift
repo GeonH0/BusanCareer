@@ -24,6 +24,8 @@ class ListViewController: UITableViewController {
     
     var sortType: SortType = .deadline // 초기 정렬 유형 설정
     
+    let deadlineSwitch = UISwitch()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,44 +46,50 @@ class ListViewController: UITableViewController {
             searchBar.topAnchor.constraint(equalTo: headerView.topAnchor)
         ])
         
-        // 첫 번째 버튼 생성
-        let sortButton = UIButton(type: .system)
-        sortButton.translatesAutoresizingMaskIntoConstraints = false
-        sortButton.setTitle("마감일자순", for: .normal)
-        sortButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
+
+        
+        let sortButton = ButtonFactory.createButton(title: "마감일자순", target: self, action: #selector(sortButtonTapped))
+        let latestButton = ButtonFactory.createButton(title: "최신순", target: self, action: #selector(latestButtonTapped))
+        let sectionButton = ButtonFactory.createButton(title: "구역별", target: self, action: #selector(sectionButtonTapped))
+        
+        
+        deadlineSwitch.translatesAutoresizingMaskIntoConstraints = false
+        deadlineSwitch.addTarget(self, action: #selector(deadlineSwitchChanged), for: .valueChanged)
+        headerView.addSubview(deadlineSwitch)
+        
+
+
+
+
+
+
+        // 버튼을 먼저 headerView에 추가합니다.
         headerView.addSubview(sortButton)
-        
-        // 두 번째 버튼 생성
-        let latestButton = UIButton(type: .system)
-        latestButton.translatesAutoresizingMaskIntoConstraints = false
-        latestButton.setTitle("최신순", for: .normal)
-        latestButton.addTarget(self, action: #selector(latestButtonTapped), for: .touchUpInside)
         headerView.addSubview(latestButton)
-        
-        // 세 번째 버튼 생성
-        let sectionButton = UIButton(type: .system)
-        sectionButton.translatesAutoresizingMaskIntoConstraints = false
-        sectionButton.setTitle("구역별", for: .normal)
-        sectionButton.addTarget(self, action: #selector(sectionButtonTapped), for: .touchUpInside)
         headerView.addSubview(sectionButton)
-        
-        
-        // 버튼 Auto Layout 설정
+        headerView.addSubview(deadlineSwitch)
+
+        // 그 다음에 제약을 설정합니다.
         NSLayoutConstraint.activate([
             sortButton.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
             sortButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            sortButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3),
-            
+            sortButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/4),  // 수정
+
             latestButton.leadingAnchor.constraint(equalTo: sortButton.trailingAnchor),
             latestButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            latestButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3),
-            
+            latestButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/4),  // 수정
+
             sectionButton.leadingAnchor.constraint(equalTo: latestButton.trailingAnchor),
             sectionButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            sectionButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3),
-            sectionButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
-            sectionButton.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)
+            sectionButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/4),  // 수정
+
+            deadlineSwitch.leadingAnchor.constraint(equalTo: sectionButton.trailingAnchor),
+            deadlineSwitch.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),  // 추가
+            deadlineSwitch.topAnchor.constraint(equalTo: searchBar.bottomAnchor),  // 추가
+            deadlineSwitch.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)  // 추가
         ])
+
+
         
         
         // 테이블 뷰 헤더에 커스텀 헤더 뷰 설정
@@ -145,6 +153,25 @@ class ListViewController: UITableViewController {
             scrollToTopIfNeeded()
         }
     }
+    @objc func deadlineSwitchChanged(_ sender: UISwitch) {
+        if sender.isOn {
+            // 스위치가 켜져 있으면, 마감일자가 지나지 않은 셀만 보여줍니다.
+            jobs = originalJobs.filter { job in
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                if let deadline = dateFormatter.date(from: job.reqDateE ?? "") {
+                    return deadline > Date()
+                } else {
+                    return false
+                }
+            }
+        } else {
+            // 스위치가 꺼져 있으면, 모든 셀을 보여줍니다.
+            jobs = originalJobs
+        }
+        tableView.reloadData()
+    }
+
     
     
     
@@ -223,6 +250,7 @@ class ListViewController: UITableViewController {
     
     func createSections(from jobs: [Item]) -> [Section] {
         let targetAreas = [
+            "시청",
             "중구", "서구", "동구", "영도구", "부산진구", "동래구", "남구", "북구",
             "해운대구", "사하구", "금정구", "강서구", "연제구", "수영구", "사상구", "기장"
         ]
@@ -261,7 +289,22 @@ extension ListViewController: UISearchBarDelegate {
             // 검색창의 텍스트가 있을 때는 해당 텍스트를 포함하는 데이터만 필터링
             jobs = originalJobs.filter { $0.title.contains(searchText) }
         }
+
+        // deadlineSwitch의 상태에 따라 검색 결과를 필터링
+        if deadlineSwitch.isOn {
+            jobs = jobs.filter { job in
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                if let deadline = dateFormatter.date(from: job.reqDateE ?? "") {
+                    return deadline > Date()
+                } else {
+                    return false
+                }
+            }
+        }
+
         tableView.reloadData()
     }
 }
+
 
