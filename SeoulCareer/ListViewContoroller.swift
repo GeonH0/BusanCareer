@@ -116,6 +116,15 @@ class ListViewController: UITableViewController {
             self.jobs.append(contentsOf: self.deadlineSwitch.isOn ? filteredJobs : fetchedJobs)
             self.originalJobs.append(contentsOf: fetchedJobs)
             
+            switch self.sortType {
+            case .deadline:
+                self.jobs = self.sortJobsByDeadline()
+            case .latest:
+                self.jobs = self.sortJobsByLatest()
+            case .bySection:
+                self.sections = self.createSections(from: self.jobs)
+            }
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
