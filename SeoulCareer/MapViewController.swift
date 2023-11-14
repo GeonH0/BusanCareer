@@ -35,6 +35,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             mapNaverView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
+        for location in LocationManager.shared.locations {
+            let marker = NMFMarker()
+            marker.position = NMGLatLng(lat: location.latitude, lng: location.longitude)
+            marker.captionText = location.name
+            marker.mapView = mapNaverView.mapView
+        }
+        
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
