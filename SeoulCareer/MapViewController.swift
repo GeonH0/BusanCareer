@@ -34,6 +34,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             mapNaverView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapNaverView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
