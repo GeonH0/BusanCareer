@@ -24,74 +24,71 @@ class ListViewController: UITableViewController {
     
     var sortType: SortType = .deadline // 초기 정렬 유형 설정
     
-    let deadlineSwitch = UISwitch()
+    var deadlineSwitch = UISwitch()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // 커스텀 헤더 뷰 생성
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 88))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 120))
         
+        // 레이블 인스턴스 생성
+        let switchLabel = UILabel()
+        switchLabel.translatesAutoresizingMaskIntoConstraints = false
+        switchLabel.text = "마감일자 제외하기"
+        switchLabel.textAlignment = .center
+        headerView.addSubview(switchLabel)
+
         
+        // UISwitch 인스턴스 생성
+        deadlineSwitch = UISwitch()
+        deadlineSwitch.translatesAutoresizingMaskIntoConstraints = false
+        deadlineSwitch.addTarget(self, action: #selector(deadlineSwitchChanged), for: .valueChanged)
+        headerView.addSubview(deadlineSwitch)
+
         // UISearchBar 인스턴스 생성
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.placeholder = "공고를 검색해 보세요!"
         headerView.addSubview(searchBar)
-        
-        // 검색창 Auto Layout 설정
-        NSLayoutConstraint.activate([
-            searchBar.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
-            searchBar.topAnchor.constraint(equalTo: headerView.topAnchor)
-        ])
-        
 
-        
+        // Create buttons
         let sortButton = ButtonFactory.createButton(title: "마감일자순", target: self, action: #selector(sortButtonTapped))
         let latestButton = ButtonFactory.createButton(title: "최신순", target: self, action: #selector(latestButtonTapped))
         let sectionButton = ButtonFactory.createButton(title: "구역별", target: self, action: #selector(sectionButtonTapped))
         
-        
-        deadlineSwitch.translatesAutoresizingMaskIntoConstraints = false
-        deadlineSwitch.addTarget(self, action: #selector(deadlineSwitchChanged), for: .valueChanged)
-        headerView.addSubview(deadlineSwitch)
-        
-
-
-
-
-
-
-        // 버튼을 먼저 headerView에 추가합니다.
+        // Add buttons to headerView
         headerView.addSubview(sortButton)
         headerView.addSubview(latestButton)
         headerView.addSubview(sectionButton)
-        headerView.addSubview(deadlineSwitch)
 
-        // 그 다음에 제약을 설정합니다.
+        // Auto Layout 설정
         NSLayoutConstraint.activate([
+            switchLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10),
+            switchLabel.trailingAnchor.constraint(equalTo: deadlineSwitch.leadingAnchor, constant: -10),
+
+            deadlineSwitch.centerYAnchor.constraint(equalTo: switchLabel.centerYAnchor),
+            deadlineSwitch.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -20),
+
+            searchBar.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
+            searchBar.topAnchor.constraint(equalTo: switchLabel.bottomAnchor, constant: 5),
+            
+            sortButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 5),
             sortButton.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-            sortButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            sortButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/4),  // 수정
-
+            sortButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3),
+            
+            latestButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 5),
             latestButton.leadingAnchor.constraint(equalTo: sortButton.trailingAnchor),
-            latestButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            latestButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/4),  // 수정
-
+            latestButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3),
+            
+            sectionButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 5),
             sectionButton.leadingAnchor.constraint(equalTo: latestButton.trailingAnchor),
-            sectionButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            sectionButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/4),  // 수정
-
-            deadlineSwitch.leadingAnchor.constraint(equalTo: sectionButton.trailingAnchor),
-            deadlineSwitch.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),  // 추가
-            deadlineSwitch.topAnchor.constraint(equalTo: searchBar.bottomAnchor),  // 추가
-            deadlineSwitch.bottomAnchor.constraint(equalTo: headerView.bottomAnchor)  // 추가
+            sectionButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
+            sectionButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3),
         ])
 
-
-        
-        
         // 테이블 뷰 헤더에 커스텀 헤더 뷰 설정
         tableView.tableHeaderView = headerView
         
@@ -112,10 +109,9 @@ class ListViewController: UITableViewController {
             }
         }
         
-        
         searchBar.delegate = self
-        
     }
+
     
     
     
