@@ -50,6 +50,7 @@
 		1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
 		1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewContoroller.swift; sourceTree = "<group>"; };
 		1D6B60D72AB099DD00650B87 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		1D7356C42B035AB700A6100F /* KEY.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = KEY.xcconfig; sourceTree = "<group>"; };
 		1DC2669C2AB196B40043AF2C /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
 		1DCF693F2AAFFA9600A19419 /* SeoulCareer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeoulCareer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCF69422AAFFA9600A19419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +202,7 @@
 				AE957C75BB793D6F29B5EC60 /* Pods-SeoulCareer-SeoulCareerUITests.release.xcconfig */,
 				88BCB2C3DB25A6BC836098DB /* Pods-SeoulCareerTests.debug.xcconfig */,
 				491FD66D3487F892CE827624 /* Pods-SeoulCareerTests.release.xcconfig */,
+				1D7356C42B035AB700A6100F /* KEY.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -636,7 +638,7 @@
 		};
 		1DCF696A2AAFFA9800A19419 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B123C420096444E448FA7BDC /* Pods-SeoulCareer.debug.xcconfig */;
+			baseConfigurationReference = 1D7356C42B035AB700A6100F /* KEY.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -645,6 +647,8 @@
 				DEVELOPMENT_TEAM = 6763324T69;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeoulCareer/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치를 받아오려고 합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 받아오려고 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -674,6 +678,8 @@
 				DEVELOPMENT_TEAM = 6763324T69;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeoulCareer/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 위치를 받아오려고 합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치를 받아오려고 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

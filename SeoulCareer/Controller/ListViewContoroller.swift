@@ -201,10 +201,7 @@ class ListViewController: UITableViewController {
         tableView.reloadData()
     }
 
-
-
-    
-    
+        
     
     func scrollToTopIfNeeded() {
         let indexPath = IndexPath(row: 0, section: 0) // 상단 셀의 IndexPath
@@ -297,7 +294,6 @@ class ListViewController: UITableViewController {
                 }
             } else {
                 otherSection.items.append(job)
-                print("Job with recruitAgencyName '\(job.recruitAgencyName )' goes to '기타' section.")
             }
         }
         

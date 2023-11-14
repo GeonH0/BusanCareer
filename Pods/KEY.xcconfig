@@ -8,4 +8,9 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
+
+
+
+#include "Pods/Target Support Files/Pods-SeoulCareer/Pods-SeoulCareer.debug.xcconfig"
+
 serviceKey = "CjHhgoullv8N53RHncSTgoqKKrObdG2H6sAumzGW0VMNLMlqLeATBaiNO8OIjafRyAtUGBGEXTRs9kvJa9jZVA%3D%3D"
