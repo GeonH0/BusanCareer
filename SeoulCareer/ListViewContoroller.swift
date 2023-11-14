@@ -102,12 +102,25 @@ class ListViewController: UITableViewController {
         
         dataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
             guard let self = self else { return }
-            self.jobs = fetchedJobs
-            self.originalJobs = fetchedJobs
+            
+            let filteredJobs = fetchedJobs.filter { job in
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                if let deadline = dateFormatter.date(from: job.reqDateE ?? "") {
+                    return deadline > Date()
+                } else {
+                    return false
+                }
+            }
+            
+            self.jobs.append(contentsOf: self.deadlineSwitch.isOn ? filteredJobs : fetchedJobs)
+            self.originalJobs.append(contentsOf: fetchedJobs)
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+
         
         searchBar.delegate = self
     }
@@ -165,8 +178,21 @@ class ListViewController: UITableViewController {
             // 스위치가 꺼져 있으면, 모든 셀을 보여줍니다.
             jobs = originalJobs
         }
+
+        // 현재 정렬 상태에 따라 다시 정렬합니다.
+        switch sortType {
+        case .deadline:
+            jobs = sortJobsByDeadline()
+        case .latest:
+            jobs = sortJobsByLatest()
+        case .bySection:
+            sections = createSections(from: jobs)
+        }
+
         tableView.reloadData()
     }
+
+
 
     
     
