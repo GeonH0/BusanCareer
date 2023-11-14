@@ -31,7 +31,7 @@ class ListViewController: UITableViewController {
         super.viewDidLoad()
         
         // 커스텀 헤더 뷰 생성
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 120))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 130))
         
         // 레이블 인스턴스 생성
         let switchLabel = UILabel()
@@ -53,7 +53,7 @@ class ListViewController: UITableViewController {
         searchBar.placeholder = "공고를 검색해 보세요!"
         headerView.addSubview(searchBar)
 
-        // Create buttons
+        // 버튼 생성
         let sortButton = ButtonFactory.createButton(title: "마감일자순", target: self, action: #selector(sortButtonTapped))
         let latestButton = ButtonFactory.createButton(title: "최신순", target: self, action: #selector(latestButtonTapped))
         let sectionButton = ButtonFactory.createButton(title: "구역별", target: self, action: #selector(sectionButtonTapped))
@@ -73,7 +73,7 @@ class ListViewController: UITableViewController {
 
             searchBar.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
-            searchBar.topAnchor.constraint(equalTo: switchLabel.bottomAnchor, constant: 5),
+            searchBar.topAnchor.constraint(equalTo: switchLabel.bottomAnchor, constant: 10),
             
             sortButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 5),
             sortButton.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
@@ -297,7 +297,7 @@ class ListViewController: UITableViewController {
                 }
             } else {
                 otherSection.items.append(job)
-                print("Job with recruitAgencyName '\(job.recruitAgencyName ?? "nil")' goes to '기타' section.")
+                print("Job with recruitAgencyName '\(job.recruitAgencyName )' goes to '기타' section.")
             }
         }
         

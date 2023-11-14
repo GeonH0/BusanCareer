@@ -132,15 +132,12 @@
 		1DCF69412AAFFA9600A19419 /* SeoulCareer */ = {
 			isa = PBXGroup;
 			children = (
+				1DD350B92B03498100A55040 /* Controller */,
+				1DD350B82B03490500A55040 /* View */,
 				1DD28E422AFE0FC60018A786 /* Model */,
 				1DCF69422AAFFA9600A19419 /* AppDelegate.swift */,
 				1DCF69442AAFFA9600A19419 /* SceneDelegate.swift */,
 				1DCF69482AAFFA9600A19419 /* Main.storyboard */,
-				1D6B60D72AB099DD00650B87 /* MapViewController.swift */,
-				1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */,
-				1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */,
-				1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */,
-				1DD350762B02772600A55040 /* ButtonFactory.swift */,
 				1DCF694B2AAFFA9700A19419 /* Assets.xcassets */,
 				1DCF694D2AAFFA9700A19419 /* LaunchScreen.storyboard */,
 				1DCF69502AAFFA9700A19419 /* Info.plist */,
@@ -174,6 +171,25 @@
 				1DD350B62B030E0A00A55040 /* LocationManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1DD350B82B03490500A55040 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */,
+				1DD350762B02772600A55040 /* ButtonFactory.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1DD350B92B03498100A55040 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1D6B60D72AB099DD00650B87 /* MapViewController.swift */,
+				1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */,
+				1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		2C16852A0044A5E92E199897 /* Pods */ = {

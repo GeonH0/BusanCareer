@@ -35,12 +35,34 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             mapNaverView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
+//        for location in LocationManager.shared.locations {
+//            let marker = NMFMarker()
+//            marker.position = NMGLatLng(lat: location.latitude, lng: location.longitude)
+//            marker.captionText = location.name
+//            marker.mapView = mapNaverView.mapView
+//        }
+        
         for location in LocationManager.shared.locations {
             let marker = NMFMarker()
             marker.position = NMGLatLng(lat: location.latitude, lng: location.longitude)
             marker.captionText = location.name
             marker.mapView = mapNaverView.mapView
+
+            // 마커 클릭시 동작 설정
+            marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
+                if let marker = overlay as? NMFMarker {
+                    // 알림창 생성
+                    let alertController = UIAlertController(title: marker.captionText, message: "위도: \(marker.position.lat), 경도: \(marker.position.lng)", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+
+                    // 알림창 표시
+                    self?.present(alertController, animated: true, completion: nil)
+                }
+                return true
+            }
         }
+
         
     }
 

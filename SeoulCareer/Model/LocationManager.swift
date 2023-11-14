@@ -9,6 +9,7 @@ import Foundation
 
 
 class LocationManager {
+    
     static let shared = LocationManager()
     
     let locations = [
