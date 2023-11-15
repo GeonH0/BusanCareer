@@ -10,6 +10,7 @@
 		1D280A242AE0AAA600C2FCAA /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */; };
 		1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */; };
 		1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B60D72AB099DD00650B87 /* MapViewController.swift */; };
+		1D7356C62B04477D00A6100F /* ListViewControllerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7356C52B04477D00A6100F /* ListViewControllerAction.swift */; };
 		1DC2669D2AB196B40043AF2C /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC2669C2AB196B40043AF2C /* Jobs.swift */; };
 		1DCF69432AAFFA9600A19419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69422AAFFA9600A19419 /* AppDelegate.swift */; };
 		1DCF69452AAFFA9600A19419 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69442AAFFA9600A19419 /* SceneDelegate.swift */; };
@@ -51,6 +52,7 @@
 		1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewContoroller.swift; sourceTree = "<group>"; };
 		1D6B60D72AB099DD00650B87 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1D7356C42B035AB700A6100F /* KEY.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = KEY.xcconfig; sourceTree = "<group>"; };
+		1D7356C52B04477D00A6100F /* ListViewControllerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerAction.swift; sourceTree = "<group>"; };
 		1DC2669C2AB196B40043AF2C /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
 		1DCF693F2AAFFA9600A19419 /* SeoulCareer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeoulCareer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCF69422AAFFA9600A19419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				1D6B60D72AB099DD00650B87 /* MapViewController.swift */,
 				1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */,
 				1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */,
+				1D7356C52B04477D00A6100F /* ListViewControllerAction.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 			files = (
 				1DD350772B02772600A55040 /* ButtonFactory.swift in Sources */,
 				1DCF69432AAFFA9600A19419 /* AppDelegate.swift in Sources */,
+				1D7356C62B04477D00A6100F /* ListViewControllerAction.swift in Sources */,
 				1DD350B52B03070600A55040 /* BusanLocation.swift in Sources */,
 				1DD350B72B030E0A00A55040 /* LocationManager.swift in Sources */,
 				1DDA7D702ADFA46900D9F4E8 /* JobListCell.swift in Sources */,
