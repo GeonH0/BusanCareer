@@ -206,13 +206,40 @@ class ListViewController: UITableViewController {
             currentPage += 1
             dataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
                 guard let self = self else { return }
-                self.jobs += fetchedJobs
+                var newJobs = fetchedJobs
+
+                // deadlineSwitch가 켜져 있을 경우, 마감일자가 지난 데이터를 제외
+                if self.deadlineSwitch.isOn {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    newJobs = newJobs.filter { job in
+                        if let deadline = dateFormatter.date(from: job.reqDateE ?? "") {
+                            return deadline > Date()
+                        } else {
+                            return false
+                        }
+                    }
+                }
+
+                // 더 이상 불러올 데이터가 없으면 무한 스크롤을 멈춤
+                if newJobs.isEmpty {
+                    return
+                }
+
+                self.jobs += newJobs
+                self.originalJobs += newJobs
+
+                if self.sortType == .bySection {
+                    self.sections = self.createSections(from: self.jobs)
+                }
+
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
         }
     }
+
     
     
     
@@ -269,6 +296,10 @@ extension ListViewController: UISearchBarDelegate {
                 }
             }
         }
+        
+        if sortType == .bySection {
+                sections = createSections(from: jobs)
+            }
 
         tableView.reloadData()
     }
