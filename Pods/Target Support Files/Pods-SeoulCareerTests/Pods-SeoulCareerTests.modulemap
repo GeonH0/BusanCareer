@@ -1,6 +1,0 @@
-framework module Pods_SeoulCareerTests {
-  umbrella header "Pods-SeoulCareerTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -1,21 +1,21 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'SeoulCareer' do
+target 'BusanCareer' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for SeoulCareer
+  # Pods for BusanCareer
   pod 'NMapsMap'
   pod 'Alamofire’
   pod 'SnapKit'
 
-  target 'SeoulCareerTests' do
+  target 'BusanCareerTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'SeoulCareerUITests' do
+  target 'BusanCareerUITests' do
     # Pods for testing
   end
 
