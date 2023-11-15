@@ -100,6 +100,10 @@ class ListViewController: UITableViewController {
         activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+        
         dataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
             guard let self = self else { return }
             
@@ -133,12 +137,6 @@ class ListViewController: UITableViewController {
         
         searchBar.delegate = self
     }
-
-    
-    
-    
-
-    
 
 
         
@@ -295,6 +293,10 @@ extension ListViewController: UISearchBarDelegate {
                     return false
                 }
             }
+        }
+        
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.resignFirstResponder() // 키보드 내리기
         }
         
         if sortType == .bySection {
