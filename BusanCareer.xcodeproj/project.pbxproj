@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		096D6642331674EE6F4CAC77 /* Pods_BusanCareer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1FE968C9D01B094052D0C27 /* Pods_BusanCareer.framework */; };
+		1D2596642B1DA9CF000A922D /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2596632B1DA9CF000A922D /* SectionView.swift */; };
 		1D280A242AE0AAA600C2FCAA /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */; };
 		1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */; };
 		1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B60D72AB099DD00650B87 /* MapViewController.swift */; };
@@ -49,11 +50,12 @@
 
 /* Begin PBXFileReference section */
 		0C8F184D53D3CE1B38F5F725 /* Pods_BusanCareer_BusanCareerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BusanCareer_BusanCareerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D2596632B1DA9CF000A922D /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
 		1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewContoroller.swift; sourceTree = "<group>"; };
 		1D6B60D72AB099DD00650B87 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		1D7356C42B035AB700A6100F /* KEY.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = KEY.xcconfig; sourceTree = "<group>"; };
 		1D7356C52B04477D00A6100F /* ListViewControllerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerAction.swift; sourceTree = "<group>"; };
+		1D7BF4392B05157F000DF0B1 /* KEY.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = KEY.xcconfig; sourceTree = "<group>"; };
 		1DC2669C2AB196B40043AF2C /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
 		1DCF693F2AAFFA9600A19419 /* BusanCareer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusanCareer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCF69422AAFFA9600A19419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				1DD28E3E2AFDF9D70018A786 /* JobDataFetch.swift */,
 				1DC2669C2AB196B40043AF2C /* Jobs.swift */,
 				1DD350B42B03070600A55040 /* BusanLocation.swift */,
+				1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */,
 				1DD350B62B030E0A00A55040 /* LocationManager.swift */,
 			);
 			path = Model;
@@ -187,6 +190,7 @@
 			children = (
 				1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */,
 				1DD350762B02772600A55040 /* ButtonFactory.swift */,
+				1D2596632B1DA9CF000A922D /* SectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				1D6B60D72AB099DD00650B87 /* MapViewController.swift */,
-				1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */,
 				1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */,
 				1D7356C52B04477D00A6100F /* ListViewControllerAction.swift */,
 			);
@@ -211,13 +214,13 @@
 				AE957C75BB793D6F29B5EC60 /* Pods-SeoulCareer-SeoulCareerUITests.release.xcconfig */,
 				88BCB2C3DB25A6BC836098DB /* Pods-SeoulCareerTests.debug.xcconfig */,
 				491FD66D3487F892CE827624 /* Pods-SeoulCareerTests.release.xcconfig */,
-				1D7356C42B035AB700A6100F /* KEY.xcconfig */,
 				941A12ABF27C909B04B00269 /* Pods-BusanCareer.debug.xcconfig */,
 				A038424D8DF5ADE8C0A3A288 /* Pods-BusanCareer.release.xcconfig */,
 				E578473B14D6EB9AB010E185 /* Pods-BusanCareer-BusanCareerUITests.debug.xcconfig */,
 				46F2456BD175121271C0920F /* Pods-BusanCareer-BusanCareerUITests.release.xcconfig */,
 				6B054F430C4F88D5E6224CCA /* Pods-BusanCareerTests.debug.xcconfig */,
 				89C36F53CD96770BE0C93755 /* Pods-BusanCareerTests.release.xcconfig */,
+				1D7BF4392B05157F000DF0B1 /* KEY.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -301,7 +304,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					1DCF693E2AAFFA9600A19419 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -479,6 +482,7 @@
 				1DDA7D702ADFA46900D9F4E8 /* JobListCell.swift in Sources */,
 				1D280A242AE0AAA600C2FCAA /* JobDetailViewController.swift in Sources */,
 				1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */,
+				1D2596642B1DA9CF000A922D /* SectionView.swift in Sources */,
 				1DD28E3F2AFDF9D70018A786 /* JobDataFetch.swift in Sources */,
 				1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */,
 				1DCF69452AAFFA9600A19419 /* SceneDelegate.swift in Sources */,
@@ -574,6 +578,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -634,6 +639,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -654,7 +660,7 @@
 		};
 		1DCF696A2AAFFA9800A19419 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 941A12ABF27C909B04B00269 /* Pods-BusanCareer.debug.xcconfig */;
+			baseConfigurationReference = 1D7BF4392B05157F000DF0B1 /* KEY.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

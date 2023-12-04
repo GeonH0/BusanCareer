@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 import NMapsMap
 import CoreLocation
 
@@ -16,7 +17,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization() // 또는 locationManager.requestAlwaysAuthorization()
 
         let mapNaverView = NMFNaverMapView()
-        mapNaverView.showZoomControls = false
+        mapNaverView.showZoomControls = true
         mapNaverView.showLocationButton = true
         mapNaverView.mapView.isScrollGestureEnabled = true
         mapNaverView.mapView.isTiltGestureEnabled = true
@@ -45,17 +46,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             // 마커 클릭시 동작 설정
             marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
                 if let marker = overlay as? NMFMarker {
-                    // 알림창 생성
-                    let alertController = UIAlertController(title: marker.captionText, message: "위도: \(marker.position.lat), 경도: \(marker.position.lng)", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-                    alertController.addAction(okAction)
+                    let detailView = SectionView(latitude: marker.position.lat, longitude: marker.position.lng)
+                    let detailVC = UIHostingController(rootView: detailView)                    
+                    if let sheet = detailVC.sheetPresentationController {
+                        sheet.detents = [.medium(), .large()]
+                        sheet.prefersGrabberVisible = true
+                        sheet.preferredCornerRadius = 20
+                        sheet.prefersScrollingExpandsWhenScrolledToEdge = false
 
-                    // 알림창 표시
-                    self?.present(alertController, animated: true, completion: nil)
+                    }
+                    self?.present(detailVC, animated: true, completion: nil)
                 }
                 return true
             }
         }
+
 
         
     }
