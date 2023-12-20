@@ -44,24 +44,34 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NMFMapView
             marker.position = NMGLatLng(lat: location.latitude, lng: location.longitude)
             marker.captionText = location.name
             marker.mapView = mapNaverView.mapView
-
+            
             marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
                 guard let self = self, let marker = overlay as? NMFMarker else { return true }
-
+                
                 self.displayCustomView(for: marker)
                 return true
             }
         }
     }
-    private func displayCustomView(for marker: NMFMarker) {
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-        customView.backgroundColor = .white
-        customView.center = self.view.center
-        self.view.addSubview(customView)
-
-        // 추가적인 뷰 설정, 예를 들어 레이블 추가 등
+    func displayCustomView(for marker: NMFMarker) {
+        let sectionView = SectionView(latitude: marker.position.lat, longitude: marker.position.lng)
+        
+        // SwiftUI 뷰를 포함하는 UIHostingController를 생성합니다.
+        let customViewController = UIHostingController(rootView: sectionView)
+        
+        
+        
+        
+        if let sheet = customViewController.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+        }
+        self.present(customViewController, animated: true)
     }
-
+    
+    
     
     func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
         infoWindow.close()
