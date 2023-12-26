@@ -162,7 +162,6 @@
 				1DD28E3E2AFDF9D70018A786 /* JobDataFetch.swift */,
 				1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */,
 				1DA5959A2B32D38100BB8AFB /* HeaderView.swift */,
-				1DD28E422AFE0FC60018A786 /* Model */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -192,8 +191,9 @@
 		1DCF69412AAFFA9600A19419 /* BusanCareer */ = {
 			isa = PBXGroup;
 			children = (
-				1DD350B92B03498100A55040 /* Controller */,
+				1DD28E422AFE0FC60018A786 /* Model */,
 				1DD350B82B03490500A55040 /* View */,
+				1DD350B92B03498100A55040 /* Controller */,
 				1DCF69422AAFFA9600A19419 /* AppDelegate.swift */,
 				1DCF69442AAFFA9600A19419 /* SceneDelegate.swift */,
 				1DCF69482AAFFA9600A19419 /* Main.storyboard */,
