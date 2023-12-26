@@ -59,9 +59,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NMFMapView
         // SwiftUI 뷰를 포함하는 UIHostingController를 생성합니다.
         let customViewController = UIHostingController(rootView: sectionView)
         
-        
-        
-        
         if let sheet = customViewController.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
             sheet.prefersGrabberVisible = true
