@@ -10,6 +10,9 @@ import SwiftUI
 struct SectionView: View {
     var latitude: Double
     var longitude: Double
+    
+    
+    
 
     var body: some View {
         // 여기에 창에 표시할 내용을 준비하십시오.
@@ -17,6 +20,5 @@ struct SectionView: View {
     }
 }
 
-// ...
 
 
