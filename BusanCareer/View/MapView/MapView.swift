@@ -15,7 +15,8 @@ class MapView: UIView, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
     var infoWindow = NMFInfoWindow()
     var mapNaverView: NMFNaverMapView!
     var onMarkerTapped: ((NMGLatLng) -> Void)?
-
+    var sections: [Section] = []
+    
     func setupMapView() {
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -45,19 +46,24 @@ class MapView: UIView, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
         ])
     }
 
-    func setupMarkers(locations: [BusanLocation]) {
-        for location in locations {
-            let marker = NMFMarker()
-            marker.position = NMGLatLng(lat: location.latitude, lng: location.longitude)
-            marker.captionText = location.name
-            marker.mapView = mapNaverView.mapView
+    func setupMarkers() {
+           if sections.isEmpty {
+               print("섹션 데이터가 비어 있습니다.")
+               return
+           }
 
-            marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
-                if let marker = overlay as? NMFMarker {
-                    self?.onMarkerTapped?(marker.position)
-                }
-                return true
-            }
-        }
-    }
+           for section in sections {
+               let marker = NMFMarker()
+               marker.position = NMGLatLng(lat: section.latitude, lng: section.longitude)
+               marker.mapView = mapNaverView.mapView
+
+               marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
+                   if let marker = overlay as? NMFMarker {
+                       self?.onMarkerTapped?(marker.position)
+                   }
+                   return true
+               }
+           }
+       }
+
 }

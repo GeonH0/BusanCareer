@@ -17,6 +17,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     private func setupMapView() {
         mapView = MapView()
+        mapView.sections = LocationManager.shared.sections
         mapView.onMarkerTapped = { [weak self] position in
             self?.displayCustomView(for: position)
         }
@@ -31,7 +32,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         ])
         
         mapView.setupMapView()
-        mapView.setupMarkers(locations: LocationManager.shared.locations)
+        mapView.setupMarkers()
     }
     
     private func setupLocationManager() {
@@ -42,10 +43,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func displayCustomView(for position: NMGLatLng) {
-        let sectionView = SectionView(latitude: position.lat, longitude: position.lng)
-        // SwiftUI 뷰를 포함하는 UIHostingController를 생성합니다.
-        let customViewController = UIHostingController(rootView: sectionView)
+        guard let section = LocationManager.shared.sections.first(where: { $0.latitude == position.lat && $0.longitude == position.lng }) else { return }
         
+        let sectionView = SectionView(section: section)
+        let customViewController = UIHostingController(rootView: sectionView)
+                
         if let sheet = customViewController.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
             sheet.prefersGrabberVisible = true

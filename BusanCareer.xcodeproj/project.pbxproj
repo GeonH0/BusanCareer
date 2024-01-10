@@ -11,6 +11,7 @@
 		1D0535032B3AA48F0006088C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0535022B3AA48F0006088C /* MapView.swift */; };
 		1D2596642B1DA9CF000A922D /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2596632B1DA9CF000A922D /* SectionView.swift */; };
 		1D280A242AE0AAA600C2FCAA /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */; };
+		1D3EB5702B3B20000096EA78 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3EB56F2B3B20000096EA78 /* Section.swift */; };
 		1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */; };
 		1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B60D72AB099DD00650B87 /* MapViewController.swift */; };
 		1D7356C62B04477D00A6100F /* ListViewControllerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7356C52B04477D00A6100F /* ListViewControllerAction.swift */; };
@@ -55,6 +56,7 @@
 		1D0535022B3AA48F0006088C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1D2596632B1DA9CF000A922D /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
+		1D3EB56F2B3B20000096EA78 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewContoroller.swift; sourceTree = "<group>"; };
 		1D6B60D72AB099DD00650B87 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1D7356C52B04477D00A6100F /* ListViewControllerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerAction.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				1DC2669C2AB196B40043AF2C /* Jobs.swift */,
 				1DD350B42B03070600A55040 /* BusanLocation.swift */,
 				1DD350B62B030E0A00A55040 /* LocationManager.swift */,
+				1D3EB56F2B3B20000096EA78 /* Section.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				1DD28E3F2AFDF9D70018A786 /* JobDataFetch.swift in Sources */,
 				1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */,
 				1DCF69452AAFFA9600A19419 /* SceneDelegate.swift in Sources */,
+				1D3EB5702B3B20000096EA78 /* Section.swift in Sources */,
 				1DC2669D2AB196B40043AF2C /* Jobs.swift in Sources */,
 				1DA5959B2B32D38100BB8AFB /* HeaderView.swift in Sources */,
 			);

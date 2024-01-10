@@ -17,10 +17,6 @@ class ListViewController: UITableViewController {
         case bySection
     }
     
-    struct Section {
-        var sectionTitle: String
-        var items: [Item]
-    }
     
     var sortType: SortType = .deadline // 초기 정렬 유형 설정
     
@@ -53,6 +49,9 @@ class ListViewController: UITableViewController {
         dataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
             guard let self = self else { return }
             
+            
+            
+            
             let filteredJobs = fetchedJobs.filter { job in
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -65,6 +64,8 @@ class ListViewController: UITableViewController {
             
             self.jobs.append(contentsOf: self.deadlineSwitch.isOn ? filteredJobs : fetchedJobs)
             self.originalJobs.append(contentsOf: fetchedJobs)
+            self.createSections(from:self.jobs )
+            self.updateSections()
             
             switch self.sortType {
             case .deadline:
@@ -187,34 +188,32 @@ class ListViewController: UITableViewController {
     
     
     func createSections(from jobs: [Item]) -> [Section] {
-        let targetAreas = [
-            "시청",
-            "중구", "서구", "동구", "영도구", "부산진구", "동래구", "남구", "북구",
-            "해운대구", "사하구", "금정구", "강서구", "연제구", "수영구", "사상구", "기장"
-        ]
+        var sections: [Section] = []
         
-        var sections: [Section] = targetAreas.map { Section(sectionTitle: $0, items: []) }
-        var otherSection = Section(sectionTitle: "기타", items: [])
-        
-        for job in jobs {
-            if let targetArea = targetAreas.first(where: { job.recruitAgencyName.contains($0) }) {
-                if let sectionIndex = sections.firstIndex(where: { $0.sectionTitle == targetArea }) {
-                    sections[sectionIndex].items.append(job)
-                    
-                }
-            } else {
-                otherSection.items.append(job)
+        for location in LocationManager.shared.locations {
+            let filteredJobs = jobs.filter { $0.recruitAgencyName.contains(location.name) }
+            if !filteredJobs.isEmpty {
+                sections.append(Section(sectionTitle: location.name, items: filteredJobs, latitude: location.latitude, longitude: location.longitude))
             }
         }
-        
-        sections = sections.filter { !$0.items.isEmpty }
-        if !otherSection.items.isEmpty {
-            sections.append(otherSection)
+
+        // '기타' 섹션 처리
+        let otherJobs = jobs.filter { job in
+            !LocationManager.shared.locations.contains(where: { job.recruitAgencyName.contains($0.name) })
         }
-        
-        
+        if !otherJobs.isEmpty {
+            let defaultLocation = BusanLocation(name: "기타", latitude: 35.0, longitude: 129.0) // 기본 위치 설정
+            sections.append(Section(sectionTitle: "기타", items: otherJobs, latitude: defaultLocation.latitude, longitude: defaultLocation.longitude))
+        }
+
         return sections
     }
+    
+    func updateSections() {
+        sections = createSections(from: jobs)
+        LocationManager.shared.sections = sections
+    }
+
 }
 
 extension ListViewController: UISearchBarDelegate {

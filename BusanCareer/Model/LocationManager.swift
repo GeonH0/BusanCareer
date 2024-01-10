@@ -34,4 +34,8 @@ class LocationManager {
         BusanLocation(name: "기장군청", latitude: 35.24442021501693, longitude: 129.22242980337498),
     ]
     
+    var sections: [Section] = []
+    
+    private init() {}
+    
 }

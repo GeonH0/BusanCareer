@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct SectionView: View {
-    var latitude: Double
-    var longitude: Double
-
+    var section: Section
+    
     var body: some View {
-        // 여기에 창에 표시할 내용을 준비하십시오.
-        Text("위도: \(latitude), 경도: \(longitude)")
+        VStack {
+            Text("지역: \(section.sectionTitle)")
+            Text("위도: \(section.latitude), 경도: \(section.longitude)")
+            
+        }
     }
 }
+
+
 
 
 
