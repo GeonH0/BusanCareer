@@ -3,62 +3,51 @@ import SwiftUI
 import NMapsMap
 import CoreLocation
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, NMFMapViewTouchDelegate {
+
+class MapViewController: UIViewController, CLLocationManagerDelegate {
+    var mapView: MapView!
     var locationManager: CLLocationManager!
-    var infoWindow = NMFInfoWindow()
-    var mapNaverView: NMFNaverMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupMapView()
+        setupLocationManager()
+    }
+    
+    private func setupMapView() {
+        mapView = MapView()
+        mapView.sections = LocationManager.shared.sections
+        mapView.onMarkerTapped = { [weak self] position in
+            self?.displayCustomView(for: position)
+        }
+        view.addSubview(mapView)
+        
+        mapView.translatesAutoresizingMaskIntoConstraints = false // 오토레이아웃 설정을 위해 추가
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+        mapView.setupMapView()
+        mapView.setupMarkers()
+    }
+    
+    private func setupLocationManager() {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        
-        mapNaverView = NMFNaverMapView() // 클래스 레벨 변수를 직접 사용
-        mapNaverView.showZoomControls = true
-        mapNaverView.showLocationButton = true
-        mapNaverView.mapView.isScrollGestureEnabled = true
-        mapNaverView.mapView.isTiltGestureEnabled = true
-        mapNaverView.mapView.isRotateGestureEnabled = true
-        mapNaverView.mapView.isStopGestureEnabled = true
-        mapNaverView.translatesAutoresizingMaskIntoConstraints = false
-        mapNaverView.mapView.touchDelegate = self // touchDelegate 설정
-        
-        view.addSubview(mapNaverView)
-        
-        NSLayoutConstraint.activate([
-            mapNaverView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapNaverView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            mapNaverView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mapNaverView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-        
-        setupMarkers()
     }
     
-    func setupMarkers() {
-        for location in LocationManager.shared.locations {
-            let marker = NMFMarker()
-            marker.position = NMGLatLng(lat: location.latitude, lng: location.longitude)
-            marker.captionText = location.name
-            marker.mapView = mapNaverView.mapView
-            
-            marker.touchHandler = { [weak self] (overlay: NMFOverlay) -> Bool in
-                guard let self = self, let marker = overlay as? NMFMarker else { return true }
-                
-                self.displayCustomView(for: marker)
-                return true
-            }
-        }
-    }
-    func displayCustomView(for marker: NMFMarker) {
-        let sectionView = SectionView(latitude: marker.position.lat, longitude: marker.position.lng)
+    func displayCustomView(for position: NMGLatLng) {
+        guard let section = LocationManager.shared.sections.first(where: { $0.latitude == position.lat && $0.longitude == position.lng }) else { return }
         
-        // SwiftUI 뷰를 포함하는 UIHostingController를 생성합니다.
+        let sectionView = SectionView(section: section)
         let customViewController = UIHostingController(rootView: sectionView)
-        
+                
         if let sheet = customViewController.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
             sheet.prefersGrabberVisible = true
@@ -66,12 +55,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NMFMapView
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false
         }
         self.present(customViewController, animated: true)
-    }
-    
-    
-    
-    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-        infoWindow.close()
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
