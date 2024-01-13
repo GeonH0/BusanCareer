@@ -712,7 +712,7 @@
 		};
 		1DCF696A2AAFFA9800A19419 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D7BF4392B05157F000DF0B1 /* KEY.xcconfig */;
+			baseConfigurationReference = 941A12ABF27C909B04B00269 /* Pods-BusanCareer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

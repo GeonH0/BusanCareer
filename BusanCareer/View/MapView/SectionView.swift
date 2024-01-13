@@ -14,6 +14,7 @@ struct SectionView: View {
         VStack {
             Text("지역: \(section.sectionTitle)")
             Text("위도: \(section.latitude), 경도: \(section.longitude)")
+            Text("\(section.items.count)")
             
         }
     }

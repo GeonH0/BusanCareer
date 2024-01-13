@@ -64,7 +64,7 @@ class ListViewController: UITableViewController {
             
             self.jobs.append(contentsOf: self.deadlineSwitch.isOn ? filteredJobs : fetchedJobs)
             self.originalJobs.append(contentsOf: fetchedJobs)
-            self.createSections(from:self.jobs )
+            self.createSections(from: self.jobs)
             self.updateSections()
             
             switch self.sortType {
