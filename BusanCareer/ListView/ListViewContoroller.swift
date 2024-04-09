@@ -2,6 +2,7 @@ import Foundation
 import Alamofire
 
 class ListViewController: UITableViewController {
+    
     var jobs: [Item] = []
     var originalJobs: [Item] = [] // 검색을 위해 모든 페이지의 데이터를 저장하는 배열
     var dataFetcher = JobDataFetcher()
@@ -48,10 +49,6 @@ class ListViewController: UITableViewController {
         
         dataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
             guard let self = self else { return }
-            
-            
-            
-            
             let filteredJobs = fetchedJobs.filter { job in
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"

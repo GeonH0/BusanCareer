@@ -10,7 +10,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupMapView()
         setupLocationManager()
     }
@@ -44,7 +43,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     func displayCustomView(for position: NMGLatLng) {
         guard let section = LocationManager.shared.sections.first(where: { $0.latitude == position.lat && $0.longitude == position.lng }) else { return }
-        
+        if section.sectionTitle == "기타"{ return}
+                
         let sectionView = SectionView(section: section)
         let customViewController = UIHostingController(rootView: sectionView)
                 

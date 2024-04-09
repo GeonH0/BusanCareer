@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 import NMapsMap
 import CoreLocation
-import SwiftUI
+//import SwiftUI
 
 class MapView: UIView, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
     var locationManager: CLLocationManager!
@@ -53,6 +53,7 @@ class MapView: UIView, NMFMapViewTouchDelegate, CLLocationManagerDelegate {
            }
 
            for section in sections {
+               if section.sectionTitle == "기타" {return}
                let marker = NMFMarker()
                marker.position = NMGLatLng(lat: section.latitude, lng: section.longitude)
                marker.mapView = mapNaverView.mapView
