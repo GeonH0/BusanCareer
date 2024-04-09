@@ -112,10 +112,12 @@ class ListViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        guard let detailViewController = storyboard.instantiateViewController(identifier: "JobDetailViewController") as? JobDetailViewController else { return }
-        detailViewController.job = jobs[indexPath.row]
-        show(detailViewController, sender: nil)
+        let detailViewController = JobDetailViewController()
+           // 선택된 job 객체를 전달
+           detailViewController.job = jobs[indexPath.row]
+           // DetailViewController를 표시
+           navigationController?.pushViewController(detailViewController, animated: true)
+        
     }
     
     
