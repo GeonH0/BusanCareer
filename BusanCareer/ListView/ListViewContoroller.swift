@@ -2,6 +2,7 @@ import Foundation
 import Alamofire
 
 class ListViewController: UITableViewController {
+    
     var jobs: [Item] = []
     var originalJobs: [Item] = [] // 검색을 위해 모든 페이지의 데이터를 저장하는 배열
     var dataFetcher = JobDataFetcher()
@@ -26,6 +27,8 @@ class ListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // 커스텀 헤더 뷰 생성
         let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 130))
         headerView.delegate = self
@@ -48,10 +51,6 @@ class ListViewController: UITableViewController {
         
         dataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
             guard let self = self else { return }
-            
-            
-            
-            
             let filteredJobs = fetchedJobs.filter { job in
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -115,10 +114,12 @@ class ListViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        guard let detailViewController = storyboard.instantiateViewController(identifier: "JobDetailViewController") as? JobDetailViewController else { return }
-        detailViewController.Job = jobs[indexPath.row]
-        show(detailViewController, sender: nil)
+        let detailViewController = JobDetailViewController()
+           // 선택된 job 객체를 전달
+           detailViewController.job = jobs[indexPath.row]
+           // DetailViewController를 표시
+           navigationController?.pushViewController(detailViewController, animated: true)
+        
     }
     
     

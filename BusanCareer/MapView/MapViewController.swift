@@ -5,16 +5,19 @@ import CoreLocation
 
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
+    
     var mapView: MapView!
     var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .white
         setupMapView()
         setupLocationManager()
+        
+        
     }
-    
+        
     private func setupMapView() {
         mapView = MapView()
         mapView.sections = LocationManager.shared.sections
@@ -44,10 +47,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     func displayCustomView(for position: NMGLatLng) {
         guard let section = LocationManager.shared.sections.first(where: { $0.latitude == position.lat && $0.longitude == position.lng }) else { return }
+        if section.sectionTitle == "기타"{ return}
         
         let sectionView = SectionView(section: section)
         let customViewController = UIHostingController(rootView: sectionView)
-                
+        
         if let sheet = customViewController.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
             sheet.prefersGrabberVisible = true
