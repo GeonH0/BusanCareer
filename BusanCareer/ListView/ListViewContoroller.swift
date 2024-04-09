@@ -114,7 +114,7 @@ class ListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let detailViewController = storyboard.instantiateViewController(identifier: "JobDetailViewController") as? JobDetailViewController else { return }
-        detailViewController.Job = jobs[indexPath.row]
+        detailViewController.job = jobs[indexPath.row]
         show(detailViewController, sender: nil)
     }
     
