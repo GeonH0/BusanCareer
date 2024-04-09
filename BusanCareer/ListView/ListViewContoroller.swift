@@ -27,6 +27,8 @@ class ListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // 커스텀 헤더 뷰 생성
         let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 130))
         headerView.delegate = self

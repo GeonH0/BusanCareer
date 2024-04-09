@@ -14,16 +14,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        // ListViewController 인스턴스 생성
+
+        // 탭 바 컨트롤러 인스턴스 생성
+        let tabBarController = UITabBarController()
+
+        // 첫 번째 탭: ListViewController
         let listViewController = ListViewController(style: .plain)
-        
-        // UINavigationController 생성 및 ListViewController를 root view controller로 설정
-        let navigationController = UINavigationController(rootViewController: listViewController)
-        
+        let listNavController = UINavigationController(rootViewController: listViewController)
+        listNavController.tabBarItem = UITabBarItem(title: "목록", image: UIImage(systemName: "list.bullet.rectangle.portrait"), selectedImage: UIImage(systemName: "list.bullet.rectangle.portrait.fill"))
+
+        // 두 번째 탭: MapViewController
+        let mapViewController = MapViewController()
+        let mapNavController = UINavigationController(rootViewController: mapViewController)
+        mapNavController.tabBarItem = UITabBarItem(title: "지도", image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
+
+        // 탭 바 컨트롤러에 뷰 컨트롤러 추가
+        tabBarController.viewControllers = [listNavController, mapNavController]
+
         // UIWindow 인스턴스 생성 및 rootViewController 설정
         self.window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = navigationController
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
     
