@@ -10,7 +10,7 @@ import Foundation
 
 class JobDetailViewController: UIViewController {
     
-    var job: Item?
+    var job: JobItem?
     let jobDetailView = JobDetailView()
     
     override func viewDidLoad() {

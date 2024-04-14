@@ -61,7 +61,7 @@ struct Body: Codable {
 
 // MARK: - Items
 struct Items: Codable {
-    let item: [Item]?
+    let item: [JobItem]?
 }
 
 //
@@ -74,7 +74,7 @@ struct Items: Codable {
 //   }
 
 // MARK: - Item
-struct Item: Codable {
+struct JobItem: Codable {
     let title, recruitAgencyName, recruitAgencyType, mngDept: String
     let mngName, bunya, workDateType, workDateNm: String?
     let workregiontxt, reqDateS, reqDateE, reqType: String?

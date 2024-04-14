@@ -9,9 +9,7 @@ import Foundation
 import UIKit
 
 extension ListViewController : HeaderViewDelegate {
-    
-
-    
+        
     
     @objc func sortButtonTapped() {
         if sortType != .deadline {

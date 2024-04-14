@@ -9,7 +9,7 @@ import Foundation
 
 struct Section {
     var sectionTitle: String
-    var items: [Item]
+    var items: [JobItem]
     var latitude: Double
     var longitude: Double
 }

@@ -5,7 +5,6 @@
 //  Created by 김건호 on 12/20/23.
 //
 
-import Foundation
 import UIKit
 
 protocol HeaderViewDelegate : AnyObject {

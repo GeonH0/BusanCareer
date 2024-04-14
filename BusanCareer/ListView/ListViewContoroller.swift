@@ -1,10 +1,11 @@
-import Foundation
+
+
 import Alamofire
 
 class ListViewController: UITableViewController {
     
-    var jobs: [Item] = []
-    var originalJobs: [Item] = [] // 검색을 위해 모든 페이지의 데이터를 저장하는 배열
+    var jobs: [JobItem] = []
+    var originalJobs: [JobItem] = [] // 검색을 위해 모든 페이지의 데이터를 저장하는 배열
     var dataFetcher = JobDataFetcher()
     var currentPage = 1
     var recruitAgencyNames: Set<String> = []
@@ -124,7 +125,7 @@ class ListViewController: UITableViewController {
     
     
     
-    func sortJobsByDeadline() -> [Item] {
+    func sortJobsByDeadline() -> [JobItem] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
@@ -140,7 +141,7 @@ class ListViewController: UITableViewController {
     
     
     
-    func sortJobsByLatest() -> [Item] {
+    func sortJobsByLatest() -> [JobItem] {
         return jobs.sorted { ($0.regDate ?? "") > ($1.regDate ?? "") }
     }
     
@@ -188,7 +189,7 @@ class ListViewController: UITableViewController {
     
     
     
-    func createSections(from jobs: [Item]) -> [Section] {
+    func createSections(from jobs: [JobItem]) -> [Section] {
         var sections: [Section] = []
         
         for location in LocationManager.shared.locations {

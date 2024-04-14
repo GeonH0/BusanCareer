@@ -66,7 +66,7 @@ class JobDetailView: UIView {
         ])
     }
     
-    func configure(with job: Item) {
+    func configure(with job: JobItem) {
         jobTitleLabel.text = job.title
         agencyNameLabel.text = job.recruitAgencyName
         reqTypeLabel.text = job.reqTypeNm

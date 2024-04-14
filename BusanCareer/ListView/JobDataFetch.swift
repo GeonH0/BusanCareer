@@ -10,7 +10,7 @@ import Alamofire
 
 class JobDataFetcher {
 
-    func fetchJobOverview(page: Int, completion: @escaping ([Item]) -> Void) {
+    func fetchJobOverview(page: Int, completion: @escaping ([JobItem]) -> Void) {
         let url = "http://apis.data.go.kr/6260000/BusanJobOpnngInfoService/getJobOpnngInfo"
         
         guard let key = Bundle.main.object(forInfoDictionaryKey: "serviceKey") as? String else {return}

@@ -46,8 +46,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func displayCustomView(for position: NMGLatLng) {
-        guard let section = LocationManager.shared.sections.first(where: { $0.latitude == position.lat && $0.longitude == position.lng }) else { return }
-        if section.sectionTitle == "기타"{ return}
+        guard let section = LocationManager.shared.sections.first(
+            where: { $0.latitude == position.lat && $0.longitude == position.lng }),
+              section.sectionTitle != "기타"
+        else { return }
         
         let sectionView = SectionView(section: section)
         let customViewController = UIHostingController(rootView: sectionView)
@@ -68,9 +70,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         case .notDetermined, .restricted, .denied:
             print("위치 서비스 Off 상태")
-        default:
-            print("위치 권한 상태 알 수 없음")
-            break
         }
     }
 }
