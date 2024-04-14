@@ -1,5 +1,3 @@
-
-
 import Alamofire
 
 class ListViewController: UITableViewController {

@@ -5,7 +5,7 @@
 //  Created by 김건호 on 11/10/23.
 //
 
-import Foundation
+
 import Alamofire
 
 class JobDataFetcher {

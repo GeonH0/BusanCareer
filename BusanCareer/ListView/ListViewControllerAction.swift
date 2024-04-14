@@ -4,8 +4,6 @@
 //
 //  Created by 김건호 on 11/15/23.
 //
-
-import Foundation
 import UIKit
 
 extension ListViewController : HeaderViewDelegate {
