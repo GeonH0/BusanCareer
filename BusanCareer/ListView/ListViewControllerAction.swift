@@ -7,12 +7,10 @@
 import UIKit
 
 extension ListViewController : HeaderViewDelegate {
-        
-    
+            
     @objc func sortButtonTapped() {
         if sortType != .deadline {
             sortType = .deadline
-            // Reload the table view with the sorting criteria
             jobs = sortJobsByDeadline()
             tableView.reloadData()
             scrollToTopIfNeeded()
@@ -24,7 +22,6 @@ extension ListViewController : HeaderViewDelegate {
     @objc func latestButtonTapped() {
         if sortType != .latest {
             sortType = .latest
-            // Reload the table view with the sorting criteria
             jobs = sortJobsByLatest()
             tableView.reloadData()
             scrollToTopIfNeeded()
@@ -36,7 +33,7 @@ extension ListViewController : HeaderViewDelegate {
     @objc func sectionButtonTapped() {
         if sortType != .bySection {
             sortType = .bySection
-            sections = createSections(from: jobs) // 데이터를 구역별로 정렬하고 sections 배열에 할당
+            sections = createSections(from: jobs)
             tableView.reloadData()
             scrollToTopIfNeeded()
         } else {
@@ -50,18 +47,14 @@ extension ListViewController : HeaderViewDelegate {
     
     func deadlineSwitchChanged(isOn: Bool) {
             if isOn {
-                // 스위치가 켜져 있으면, 마감일자가 지나지 않은 셀만 보여줍니다.
                 jobs = originalJobs.filter { job in
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     return dateFormatter.date(from: job.reqDateE ?? "") ?? Date() > Date()
                 }
             } else {
-                // 스위치가 꺼져 있으면, 모든 셀을 보여줍니다.
                 jobs = originalJobs
-            }
-
-            // 정렬 상태에 따라 재정렬
+            }            
             switch sortType {
             case .deadline:
                 jobs = sortJobsByDeadline()

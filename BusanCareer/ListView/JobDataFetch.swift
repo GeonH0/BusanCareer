@@ -23,7 +23,7 @@ class JobDataFetcher {
         let param: [String: Any] = [
             "serviceKey": serviceKey,
             "numOfRows": "20",
-            "pageNo": "\(page)", // 페이지 번호를 인자로 받아 사용
+            "pageNo": "\(page)",
             "resultType": "json"
         ]
 
@@ -45,5 +45,3 @@ class JobDataFetcher {
         }
     }
 }
-
-

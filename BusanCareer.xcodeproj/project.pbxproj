@@ -27,7 +27,6 @@
 		1DCF69642AAFFA9800A19419 /* SeoulCareerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69632AAFFA9800A19419 /* SeoulCareerUITests.swift */; };
 		1DCF69662AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69652AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift */; };
 		1DD28E3F2AFDF9D70018A786 /* JobDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD28E3E2AFDF9D70018A786 /* JobDataFetch.swift */; };
-		1DD350772B02772600A55040 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD350762B02772600A55040 /* ButtonFactory.swift */; };
 		1DD350B52B03070600A55040 /* BusanLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD350B42B03070600A55040 /* BusanLocation.swift */; };
 		1DD350B72B030E0A00A55040 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD350B62B030E0A00A55040 /* LocationManager.swift */; };
 		1DDA7D702ADFA46900D9F4E8 /* JobListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */; };
@@ -78,7 +77,6 @@
 		1DCF69632AAFFA9800A19419 /* SeoulCareerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulCareerUITests.swift; sourceTree = "<group>"; };
 		1DCF69652AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulCareerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1DD28E3E2AFDF9D70018A786 /* JobDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDataFetch.swift; sourceTree = "<group>"; };
-		1DD350762B02772600A55040 /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		1DD350B42B03070600A55040 /* BusanLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusanLocation.swift; sourceTree = "<group>"; };
 		1DD350B62B030E0A00A55040 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListCell.swift; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 		1D0534FE2B3A9AAC0006088C /* ListView */ = {
 			isa = PBXGroup;
 			children = (
-				1D0534FF2B3A9ABA0006088C /* JobDetailVIew */,
 				1D7356C52B04477D00A6100F /* ListViewControllerAction.swift */,
 				1DC2669C2AB196B40043AF2C /* Jobs.swift */,
 				1DD28E3E2AFDF9D70018A786 /* JobDataFetch.swift */,
@@ -186,10 +183,10 @@
 		1DCF69412AAFFA9600A19419 /* BusanCareer */ = {
 			isa = PBXGroup;
 			children = (
+				1D0534FF2B3A9ABA0006088C /* JobDetailVIew */,
 				1D0534FE2B3A9AAC0006088C /* ListView */,
 				1D0534FD2B3A9A8A0006088C /* MapView */,
 				1DD28E422AFE0FC60018A786 /* SectionView */,
-				1DD350B82B03490500A55040 /* View */,
 				1DCF69422AAFFA9600A19419 /* AppDelegate.swift */,
 				1DCF69442AAFFA9600A19419 /* SceneDelegate.swift */,
 				1DCF694B2AAFFA9700A19419 /* Assets.xcassets */,
@@ -223,14 +220,6 @@
 				1D3EB56F2B3B20000096EA78 /* Section.swift */,
 			);
 			path = SectionView;
-			sourceTree = "<group>";
-		};
-		1DD350B82B03490500A55040 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1DD350762B02772600A55040 /* ButtonFactory.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		2C16852A0044A5E92E199897 /* Pods */ = {
@@ -501,7 +490,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DD350772B02772600A55040 /* ButtonFactory.swift in Sources */,
 				1DCF69432AAFFA9600A19419 /* AppDelegate.swift in Sources */,
 				1D7356C62B04477D00A6100F /* ListViewControllerAction.swift in Sources */,
 				1DD350B52B03070600A55040 /* BusanLocation.swift in Sources */,
