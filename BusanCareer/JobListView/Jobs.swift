@@ -1,79 +1,24 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let welcome = try? JSONDecoder().decode(Welcome.self, from: jsonData)
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseWelcome { response in
-//     if let welcome = response.result.value {
-//       ...
-//     }
-//   }
-
-
 import Alamofire
 
-// MARK: - Welcome
+
 struct Welcome: Codable {
     let getJobOpnngInfo: GetJobOpnngInfo?
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseGetJobOpnngInfo { response in
-//     if let getJobOpnngInfo = response.result.value {
-//       ...
-//     }
-//   }
-
-// MARK: - GetJobOpnngInfo
 struct GetJobOpnngInfo: Codable {
     let header: Header?
     let body: Body?
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseBody { response in
-//     if let body = response.result.value {
-//       ...
-//     }
-//   }
-
-// MARK: - Body
 struct Body: Codable {
     let items: Items?
     let numOfRows, pageNo, totalCount: Int?
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseItems { response in
-//     if let items = response.result.value {
-//       ...
-//     }
-//   }
-
-// MARK: - Items
 struct Items: Codable {
     let item: [JobItem]?
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseItem { response in
-//     if let item = response.result.value {
-//       ...
-//     }
-//   }
-
-// MARK: - Item
 struct JobItem: Codable {
     let title, recruitAgencyName, recruitAgencyType, mngDept: String
     let mngName, bunya, workDateType, workDateNm: String?
@@ -93,16 +38,6 @@ struct JobItem: Codable {
     }
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseHeader { response in
-//     if let header = response.result.value {
-//       ...
-//     }
-//   }
-
-// MARK: - Header
 struct Header: Codable {
     let resultCode, resultMsg: String?
 }
