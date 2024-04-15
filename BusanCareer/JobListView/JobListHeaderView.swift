@@ -7,23 +7,15 @@
 
 import UIKit
 
-protocol HeaderViewDelegate : AnyObject {
-    func sortButtonTapped()
-    func latestButtonTapped()
-    func sectionButtonTapped()
-    func deadlineSwitchChanged(isOn: Bool)
-}
 
-class HeaderView : UIView {
+class JobListHeaderView: UIView {
     let switchLabel = UILabel()
     let deadlineSwitch = UISwitch()
     let searchBar = UISearchBar()
     let sortButton = UIButton()
     let latestButton = UIButton()
     let sectionButton = UIButton()
-    
-    weak var delegate : HeaderViewDelegate?
-    
+    weak var delegate : JobListHeaderViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -109,3 +101,4 @@ class HeaderView : UIView {
 
     
 }
+

@@ -6,7 +6,7 @@ import CoreLocation
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
-    var mapView: MapView!
+    private let mapView =  MapView()
     var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
@@ -14,19 +14,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         view.backgroundColor = .white
         setupMapView()
         setupLocationManager()
-        
-        
     }
         
     private func setupMapView() {
-        mapView = MapView()
         mapView.sections = LocationManager.shared.sections
         mapView.onMarkerTapped = { [weak self] position in
             self?.displayCustomView(for: position)
         }
         view.addSubview(mapView)
         
-        mapView.translatesAutoresizingMaskIntoConstraints = false // 오토레이아웃 설정을 위해 추가
+        mapView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -45,7 +42,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
     }
     
-    func displayCustomView(for position: NMGLatLng) {
+    private func displayCustomView(for position: NMGLatLng) {
         guard let section = LocationManager.shared.sections.first(
             where: { $0.latitude == position.lat && $0.longitude == position.lng }),
               section.sectionTitle != "기타"

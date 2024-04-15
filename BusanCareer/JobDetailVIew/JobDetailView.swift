@@ -9,6 +9,7 @@
 import UIKit
 
 class JobDetailView: UIView {
+    
     let jobTitleLabel = UILabel()
     let agencyNameLabel = UILabel()
     let bunyaLabel = UILabel()

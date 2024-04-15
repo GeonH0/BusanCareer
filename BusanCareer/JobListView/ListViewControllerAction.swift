@@ -6,9 +6,16 @@
 //
 import UIKit
 
-extension ListViewController : HeaderViewDelegate {
-            
-    @objc func sortButtonTapped() {
+protocol JobListHeaderViewDelegate: AnyObject {
+    func sortButtonTapped()
+    func latestButtonTapped()
+    func sectionButtonTapped()
+    func deadlineSwitchChanged(isOn: Bool)
+}
+
+extension JobListViewController: JobListHeaderViewDelegate {
+    
+    func sortButtonTapped() {
         if sortType != .deadline {
             sortType = .deadline
             jobs = sortJobsByDeadline()
@@ -19,7 +26,7 @@ extension ListViewController : HeaderViewDelegate {
         }
     }
     
-    @objc func latestButtonTapped() {
+    func latestButtonTapped() {
         if sortType != .latest {
             sortType = .latest
             jobs = sortJobsByLatest()
@@ -30,7 +37,7 @@ extension ListViewController : HeaderViewDelegate {
         }
     }
     
-    @objc func sectionButtonTapped() {
+    func sectionButtonTapped() {
         if sortType != .bySection {
             sortType = .bySection
             sections = createSections(from: jobs)
@@ -41,35 +48,30 @@ extension ListViewController : HeaderViewDelegate {
         }
     }
     
-    
-    
-    
-    
     func deadlineSwitchChanged(isOn: Bool) {
-            if isOn {
-                jobs = originalJobs.filter { job in
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd"
-                    return dateFormatter.date(from: job.reqDateE ?? "") ?? Date() > Date()
-                }
-            } else {
-                jobs = originalJobs
-            }            
-            switch sortType {
-            case .deadline:
-                jobs = sortJobsByDeadline()
-            case .latest:
-                jobs = sortJobsByLatest()
-            case .bySection:
-                sections = createSections(from: jobs)
+        if isOn {
+            jobs = originalJobs.filter { job in
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                return dateFormatter.date(from: job.reqDateE ?? "") ?? Date() > Date()
             }
-
-            tableView.reloadData()
+        } else {
+            jobs = originalJobs
         }
+        switch sortType {
+        case .deadline:
+            jobs = sortJobsByDeadline()
+        case .latest:
+            jobs = sortJobsByLatest()
+        case .bySection:
+            sections = createSections(from: jobs)
+        }
+        
+        tableView.reloadData()
+    }
+    
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
-    
-
     
 }
