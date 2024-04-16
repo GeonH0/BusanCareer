@@ -1,45 +1,26 @@
-import Foundation
 import Alamofire
 
-class ListViewController: UITableViewController {
+class JobListViewController: UITableViewController {
     
-    var jobs: [Item] = []
-    var originalJobs: [Item] = [] // 검색을 위해 모든 페이지의 데이터를 저장하는 배열
-    var dataFetcher = JobDataFetcher()
+    let activityIndicator = UIActivityIndicatorView()
+    let deadlineSwitch = UISwitch()
+    
     var currentPage = 1
-    var recruitAgencyNames: Set<String> = []
-    var activityIndicator = UIActivityIndicatorView()
+    var jobs: [JobItem] = []
+    var originalJobs: [JobItem] = []
     var sections: [Section] = []
-    
-    
-    enum SortType {
-        case deadline
-        case latest
-        case bySection
-    }
-    
-    
-    var sortType: SortType = .deadline // 초기 정렬 유형 설정
-    
-    var deadlineSwitch = UISwitch()
-    
+    var sortType: SortType = .deadline
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        // 커스텀 헤더 뷰 생성
-        let headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 130))
+        let headerView = JobListHeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 130))
         headerView.delegate = self
-                
-
-        // 테이블 뷰 헤더에 커스텀 헤더 뷰 설정
-        tableView.tableHeaderView = headerView
         
+        tableView.tableHeaderView = headerView
         tableView.register(JobListCell.self, forCellReuseIdentifier: "JobListCell")
         
-        // 액티비티 인디케이터 설정
         activityIndicator.style = .large
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
@@ -49,7 +30,8 @@ class ListViewController: UITableViewController {
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
         
-        dataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
+        
+        JobDataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
             guard let self = self else { return }
             let filteredJobs = fetchedJobs.filter { job in
                 let dateFormatter = DateFormatter()
@@ -63,7 +45,6 @@ class ListViewController: UITableViewController {
             
             self.jobs.append(contentsOf: self.deadlineSwitch.isOn ? filteredJobs : fetchedJobs)
             self.originalJobs.append(contentsOf: fetchedJobs)
-            self.createSections(from: self.jobs)
             self.updateSections()
             
             switch self.sortType {
@@ -83,9 +64,6 @@ class ListViewController: UITableViewController {
         
     }
 
-
-        
-    
     func scrollToTopIfNeeded() {
         let indexPath = IndexPath(row: 0, section: 0) // 상단 셀의 IndexPath
         if jobs.count > 0 {
@@ -111,23 +89,16 @@ class ListViewController: UITableViewController {
         cell.configure(with: job)
         return cell
     }
-
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailViewController = JobDetailViewController()
-           // 선택된 job 객체를 전달
            detailViewController.job = jobs[indexPath.row]
-           // DetailViewController를 표시
            navigationController?.pushViewController(detailViewController, animated: true)
-        
     }
     
-    
-    
-    func sortJobsByDeadline() -> [Item] {
+    func sortJobsByDeadline() -> [JobItem] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
         return jobs.sorted { (item1, item2) in
             if let date1 = dateFormatter.date(from: item1.reqDateE ?? ""),
                let date2 = dateFormatter.date(from: item2.reqDateE ?? "") {
@@ -138,9 +109,7 @@ class ListViewController: UITableViewController {
         }
     }
     
-    
-    
-    func sortJobsByLatest() -> [Item] {
+    func sortJobsByLatest() -> [JobItem] {
         return jobs.sorted { ($0.regDate ?? "") > ($1.regDate ?? "") }
     }
     
@@ -149,7 +118,7 @@ class ListViewController: UITableViewController {
         let contentHeight = scrollView.contentSize.height
         if offsetY > contentHeight - scrollView.frame.size.height {
             currentPage += 1
-            dataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
+            JobDataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
                 guard let self = self else { return }
                 var newJobs = fetchedJobs
 
@@ -188,7 +157,7 @@ class ListViewController: UITableViewController {
     
     
     
-    func createSections(from jobs: [Item]) -> [Section] {
+    func createSections(from jobs: [JobItem]) -> [Section] {
         var sections: [Section] = []
         
         for location in LocationManager.shared.locations {
@@ -217,17 +186,14 @@ class ListViewController: UITableViewController {
 
 }
 
-extension ListViewController: UISearchBarDelegate {
+extension JobListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            // 검색창의 텍스트가 비어있을 때는 원본 데이터를 복원
             jobs = originalJobs
         } else {
-            // 검색창의 텍스트가 있을 때는 해당 텍스트를 포함하는 데이터만 필터링
             jobs = originalJobs.filter { $0.title.contains(searchText) }
         }
 
-        // deadlineSwitch의 상태에 따라 검색 결과를 필터링
         if deadlineSwitch.isOn {
             jobs = jobs.filter { job in
                 let dateFormatter = DateFormatter()

@@ -19,9 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
 
         // 첫 번째 탭: ListViewController
-        let listViewController = ListViewController(style: .plain)
+        let listViewController = JobListViewController(style: .plain)
         let listNavController = UINavigationController(rootViewController: listViewController)
-        listNavController.tabBarItem = UITabBarItem(title: "목록", image: UIImage(systemName: "list.bullet.rectangle.portrait"), selectedImage: UIImage(systemName: "list.bullet.rectangle.portrait.fill"))
+        listNavController.tabBarItem = UITabBarItem(
+            title: "목록",
+            image: UIImage(systemName: "list.bullet.rectangle.portrait"),
+            selectedImage: UIImage(systemName: "list.bullet.rectangle.portrait.fill")
+        )
 
         // 두 번째 탭: MapViewController
         let mapViewController = MapViewController()

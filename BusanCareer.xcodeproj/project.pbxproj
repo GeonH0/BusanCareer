@@ -12,13 +12,13 @@
 		1D2596642B1DA9CF000A922D /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2596632B1DA9CF000A922D /* SectionView.swift */; };
 		1D280A242AE0AAA600C2FCAA /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */; };
 		1D3EB5702B3B20000096EA78 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3EB56F2B3B20000096EA78 /* Section.swift */; };
-		1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */; };
+		1D5D49ED2BCD53180083A8A6 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5D49EC2BCD53180083A8A6 /* SortType.swift */; };
+		1D5F21D62AB984A200C6B8A7 /* JobListViewContoroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5F21D52AB984A200C6B8A7 /* JobListViewContoroller.swift */; };
 		1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6B60D72AB099DD00650B87 /* MapViewController.swift */; };
 		1D7356C62B04477D00A6100F /* ListViewControllerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7356C52B04477D00A6100F /* ListViewControllerAction.swift */; };
-		1DA5959B2B32D38100BB8AFB /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA5959A2B32D38100BB8AFB /* HeaderView.swift */; };
+		1DA5959B2B32D38100BB8AFB /* JobListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA5959A2B32D38100BB8AFB /* JobListHeaderView.swift */; };
 		1DC2669D2AB196B40043AF2C /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC2669C2AB196B40043AF2C /* Jobs.swift */; };
 		1DCBF33D2BC52BAC00B5E569 /* JobDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCBF33C2BC52BAC00B5E569 /* JobDetailView.swift */; };
-		1DCBF33F2BC53A2500B5E569 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCBF33E2BC53A2500B5E569 /* TestView.swift */; };
 		1DCF69432AAFFA9600A19419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69422AAFFA9600A19419 /* AppDelegate.swift */; };
 		1DCF69452AAFFA9600A19419 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69442AAFFA9600A19419 /* SceneDelegate.swift */; };
 		1DCF694C2AAFFA9700A19419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DCF694B2AAFFA9700A19419 /* Assets.xcassets */; };
@@ -27,7 +27,6 @@
 		1DCF69642AAFFA9800A19419 /* SeoulCareerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69632AAFFA9800A19419 /* SeoulCareerUITests.swift */; };
 		1DCF69662AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF69652AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift */; };
 		1DD28E3F2AFDF9D70018A786 /* JobDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD28E3E2AFDF9D70018A786 /* JobDataFetch.swift */; };
-		1DD350772B02772600A55040 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD350762B02772600A55040 /* ButtonFactory.swift */; };
 		1DD350B52B03070600A55040 /* BusanLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD350B42B03070600A55040 /* BusanLocation.swift */; };
 		1DD350B72B030E0A00A55040 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD350B62B030E0A00A55040 /* LocationManager.swift */; };
 		1DDA7D702ADFA46900D9F4E8 /* JobListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */; };
@@ -58,14 +57,14 @@
 		1D2596632B1DA9CF000A922D /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		1D280A232AE0AAA600C2FCAA /* JobDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
 		1D3EB56F2B3B20000096EA78 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
-		1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewContoroller.swift; sourceTree = "<group>"; };
+		1D5D49EC2BCD53180083A8A6 /* SortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortType.swift; sourceTree = "<group>"; };
+		1D5F21D52AB984A200C6B8A7 /* JobListViewContoroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListViewContoroller.swift; sourceTree = "<group>"; };
 		1D6B60D72AB099DD00650B87 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1D7356C52B04477D00A6100F /* ListViewControllerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerAction.swift; sourceTree = "<group>"; };
 		1D7BF4392B05157F000DF0B1 /* KEY.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = KEY.xcconfig; sourceTree = "<group>"; };
-		1DA5959A2B32D38100BB8AFB /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		1DA5959A2B32D38100BB8AFB /* JobListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListHeaderView.swift; sourceTree = "<group>"; };
 		1DC2669C2AB196B40043AF2C /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
 		1DCBF33C2BC52BAC00B5E569 /* JobDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailView.swift; sourceTree = "<group>"; };
-		1DCBF33E2BC53A2500B5E569 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		1DCF693F2AAFFA9600A19419 /* BusanCareer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusanCareer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCF69422AAFFA9600A19419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DCF69442AAFFA9600A19419 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +77,6 @@
 		1DCF69632AAFFA9800A19419 /* SeoulCareerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulCareerUITests.swift; sourceTree = "<group>"; };
 		1DCF69652AAFFA9800A19419 /* SeoulCareerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulCareerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1DD28E3E2AFDF9D70018A786 /* JobDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDataFetch.swift; sourceTree = "<group>"; };
-		1DD350762B02772600A55040 /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		1DD350B42B03070600A55040 /* BusanLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusanLocation.swift; sourceTree = "<group>"; };
 		1DD350B62B030E0A00A55040 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobListCell.swift; sourceTree = "<group>"; };
@@ -137,19 +135,18 @@
 			path = MapView;
 			sourceTree = "<group>";
 		};
-		1D0534FE2B3A9AAC0006088C /* ListView */ = {
+		1D0534FE2B3A9AAC0006088C /* JobListView */ = {
 			isa = PBXGroup;
 			children = (
-				1D0534FF2B3A9ABA0006088C /* JobDetailVIew */,
 				1D7356C52B04477D00A6100F /* ListViewControllerAction.swift */,
 				1DC2669C2AB196B40043AF2C /* Jobs.swift */,
 				1DD28E3E2AFDF9D70018A786 /* JobDataFetch.swift */,
-				1DA5959A2B32D38100BB8AFB /* HeaderView.swift */,
+				1DA5959A2B32D38100BB8AFB /* JobListHeaderView.swift */,
 				1DDA7D6F2ADFA46900D9F4E8 /* JobListCell.swift */,
-				1D5F21D52AB984A200C6B8A7 /* ListViewContoroller.swift */,
-				1DCBF33E2BC53A2500B5E569 /* TestView.swift */,
+				1D5F21D52AB984A200C6B8A7 /* JobListViewContoroller.swift */,
+				1D5D49EC2BCD53180083A8A6 /* SortType.swift */,
 			);
-			path = ListView;
+			path = JobListView;
 			sourceTree = "<group>";
 		};
 		1D0534FF2B3A9ABA0006088C /* JobDetailVIew */ = {
@@ -186,10 +183,10 @@
 		1DCF69412AAFFA9600A19419 /* BusanCareer */ = {
 			isa = PBXGroup;
 			children = (
-				1D0534FE2B3A9AAC0006088C /* ListView */,
+				1D0534FF2B3A9ABA0006088C /* JobDetailVIew */,
+				1D0534FE2B3A9AAC0006088C /* JobListView */,
 				1D0534FD2B3A9A8A0006088C /* MapView */,
 				1DD28E422AFE0FC60018A786 /* SectionView */,
-				1DD350B82B03490500A55040 /* View */,
 				1DCF69422AAFFA9600A19419 /* AppDelegate.swift */,
 				1DCF69442AAFFA9600A19419 /* SceneDelegate.swift */,
 				1DCF694B2AAFFA9700A19419 /* Assets.xcassets */,
@@ -223,14 +220,6 @@
 				1D3EB56F2B3B20000096EA78 /* Section.swift */,
 			);
 			path = SectionView;
-			sourceTree = "<group>";
-		};
-		1DD350B82B03490500A55040 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1DD350762B02772600A55040 /* ButtonFactory.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		2C16852A0044A5E92E199897 /* Pods */ = {
@@ -501,24 +490,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DD350772B02772600A55040 /* ButtonFactory.swift in Sources */,
 				1DCF69432AAFFA9600A19419 /* AppDelegate.swift in Sources */,
 				1D7356C62B04477D00A6100F /* ListViewControllerAction.swift in Sources */,
 				1DD350B52B03070600A55040 /* BusanLocation.swift in Sources */,
 				1DD350B72B030E0A00A55040 /* LocationManager.swift in Sources */,
+				1D5D49ED2BCD53180083A8A6 /* SortType.swift in Sources */,
 				1DCBF33D2BC52BAC00B5E569 /* JobDetailView.swift in Sources */,
-				1DCBF33F2BC53A2500B5E569 /* TestView.swift in Sources */,
 				1DDA7D702ADFA46900D9F4E8 /* JobListCell.swift in Sources */,
 				1D280A242AE0AAA600C2FCAA /* JobDetailViewController.swift in Sources */,
 				1D0535032B3AA48F0006088C /* MapView.swift in Sources */,
 				1D6B60D82AB099DD00650B87 /* MapViewController.swift in Sources */,
 				1D2596642B1DA9CF000A922D /* SectionView.swift in Sources */,
 				1DD28E3F2AFDF9D70018A786 /* JobDataFetch.swift in Sources */,
-				1D5F21D62AB984A200C6B8A7 /* ListViewContoroller.swift in Sources */,
+				1D5F21D62AB984A200C6B8A7 /* JobListViewContoroller.swift in Sources */,
 				1DCF69452AAFFA9600A19419 /* SceneDelegate.swift in Sources */,
 				1D3EB5702B3B20000096EA78 /* Section.swift in Sources */,
 				1DC2669D2AB196B40043AF2C /* Jobs.swift in Sources */,
-				1DA5959B2B32D38100BB8AFB /* HeaderView.swift in Sources */,
+				1DA5959B2B32D38100BB8AFB /* JobListHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

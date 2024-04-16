@@ -6,7 +6,7 @@ import CoreLocation
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
-    var mapView: MapView!
+    private let mapView =  MapView()
     var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
@@ -14,19 +14,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         view.backgroundColor = .white
         setupMapView()
         setupLocationManager()
-        
-        
     }
         
     private func setupMapView() {
-        mapView = MapView()
         mapView.sections = LocationManager.shared.sections
         mapView.onMarkerTapped = { [weak self] position in
             self?.displayCustomView(for: position)
         }
         view.addSubview(mapView)
         
-        mapView.translatesAutoresizingMaskIntoConstraints = false // 오토레이아웃 설정을 위해 추가
+        mapView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -45,9 +42,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
     }
     
-    func displayCustomView(for position: NMGLatLng) {
-        guard let section = LocationManager.shared.sections.first(where: { $0.latitude == position.lat && $0.longitude == position.lng }) else { return }
-        if section.sectionTitle == "기타"{ return}
+    private func displayCustomView(for position: NMGLatLng) {
+        guard let section = LocationManager.shared.sections.first(
+            where: { $0.latitude == position.lat && $0.longitude == position.lng }),
+              section.sectionTitle != "기타"
+        else { return }
         
         let sectionView = SectionView(section: section)
         let customViewController = UIHostingController(rootView: sectionView)
@@ -68,9 +67,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         case .notDetermined, .restricted, .denied:
             print("위치 서비스 Off 상태")
-        default:
-            print("위치 권한 상태 알 수 없음")
-            break
         }
     }
 }

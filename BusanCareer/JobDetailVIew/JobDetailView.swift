@@ -5,10 +5,11 @@
 //  Created by 김건호 on 4/9/24.
 //
 
-import Foundation
+
 import UIKit
 
 class JobDetailView: UIView {
+    
     let jobTitleLabel = UILabel()
     let agencyNameLabel = UILabel()
     let bunyaLabel = UILabel()
@@ -66,7 +67,7 @@ class JobDetailView: UIView {
         ])
     }
     
-    func configure(with job: Item) {
+    func configure(with job: JobItem) {
         jobTitleLabel.text = job.title
         agencyNameLabel.text = job.recruitAgencyName
         reqTypeLabel.text = job.reqTypeNm

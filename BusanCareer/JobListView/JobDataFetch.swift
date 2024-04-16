@@ -5,17 +5,16 @@
 //  Created by 김건호 on 11/10/23.
 //
 
-import Foundation
+
 import Alamofire
 
 class JobDataFetcher {
 
-    func fetchJobOverview(page: Int, completion: @escaping ([Item]) -> Void) {
+    static func fetchJobOverview(page: Int, completion: @escaping ([JobItem]) -> Void) {
         let url = "http://apis.data.go.kr/6260000/BusanJobOpnngInfoService/getJobOpnngInfo"
-        
-        guard let key = Bundle.main.object(forInfoDictionaryKey: "serviceKey") as? String else {return}
+        guard let key = Bundle.main.object(forInfoDictionaryKey: "serviceKey") as? String else { return }
         var serviceKey = key
-
+        
         if let decodedServiceKey = serviceKey.removingPercentEncoding {
             serviceKey = decodedServiceKey
         }
@@ -23,7 +22,7 @@ class JobDataFetcher {
         let param: [String: Any] = [
             "serviceKey": serviceKey,
             "numOfRows": "20",
-            "pageNo": "\(page)", // 페이지 번호를 인자로 받아 사용
+            "pageNo": "\(page)",
             "resultType": "json"
         ]
 
@@ -45,5 +44,3 @@ class JobDataFetcher {
         }
     }
 }
-
-

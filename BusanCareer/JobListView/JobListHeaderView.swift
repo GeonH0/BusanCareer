@@ -5,26 +5,17 @@
 //  Created by 김건호 on 12/20/23.
 //
 
-import Foundation
 import UIKit
 
-protocol HeaderViewDelegate : AnyObject {
-    func sortButtonTapped()
-    func latestButtonTapped()
-    func sectionButtonTapped()
-    func deadlineSwitchChanged(isOn: Bool)
-}
 
-class HeaderView : UIView {
+class JobListHeaderView: UIView {
     let switchLabel = UILabel()
     let deadlineSwitch = UISwitch()
     let searchBar = UISearchBar()
-    var sortButton = UIButton()
-    var latestButton = UIButton()
-    var sectionButton = UIButton()
-    
-    weak var delegate : HeaderViewDelegate?
-    
+    let sortButton = UIButton()
+    let latestButton = UIButton()
+    let sectionButton = UIButton()
+    weak var delegate : JobListHeaderViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,12 +40,22 @@ class HeaderView : UIView {
         searchBar.placeholder = "공고를 검색해 보세요!"
         self.addSubview(searchBar)
         
-        sortButton = ButtonFactory.createButton(title: "마감일자순", target: self, action: #selector(sortButtonTapped))
-        latestButton = ButtonFactory.createButton(title: "최신순", target: self, action: #selector(latestButtonTapped))
-        sectionButton = ButtonFactory.createButton(title: "구역별", target: self, action: #selector(sectionButtonTapped))
-        
+        sortButton.translatesAutoresizingMaskIntoConstraints = false
+        sortButton.setTitle("마감일자순", for: .normal)
+        sortButton.setTitleColor(UIColor.black, for: .normal)
+        sortButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
         self.addSubview(sortButton)
+        
+        latestButton.translatesAutoresizingMaskIntoConstraints = false
+        latestButton.setTitle("최신순", for: .normal)
+        latestButton.setTitleColor(UIColor.black, for: .normal)
+        latestButton.addTarget(self, action: #selector(latestButtonTapped), for: .touchUpInside)
         self.addSubview(latestButton)
+        
+        sectionButton.translatesAutoresizingMaskIntoConstraints = false
+        sectionButton.setTitle("구역별", for: .normal)
+        sectionButton.setTitleColor(UIColor.black, for: .normal)
+        sectionButton.addTarget(self, action: #selector(sectionButtonTapped), for: .touchUpInside)
         self.addSubview(sectionButton)
         
         NSLayoutConstraint.activate([
@@ -81,11 +82,6 @@ class HeaderView : UIView {
             sectionButton.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             sectionButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3),
         ])
-        
-        
-        
-        
-        
     }
     @objc private func sortButtonTapped() {
         delegate?.sortButtonTapped()
@@ -105,3 +101,11 @@ class HeaderView : UIView {
 
     
 }
+protocol JobListHeaderViewDelegate: AnyObject {
+    func sortButtonTapped()
+    func latestButtonTapped()
+    func sectionButtonTapped()
+    func deadlineSwitchChanged(isOn: Bool)
+}
+
+
