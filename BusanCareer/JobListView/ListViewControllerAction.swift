@@ -6,12 +6,6 @@
 //
 import UIKit
 
-protocol JobListHeaderViewDelegate: AnyObject {
-    func sortButtonTapped()
-    func latestButtonTapped()
-    func sectionButtonTapped()
-    func deadlineSwitchChanged(isOn: Bool)
-}
 
 extension JobListViewController: JobListHeaderViewDelegate {
     

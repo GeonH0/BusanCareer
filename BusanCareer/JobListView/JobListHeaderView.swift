@@ -101,4 +101,11 @@ class JobListHeaderView: UIView {
 
     
 }
+protocol JobListHeaderViewDelegate: AnyObject {
+    func sortButtonTapped()
+    func latestButtonTapped()
+    func sectionButtonTapped()
+    func deadlineSwitchChanged(isOn: Bool)
+}
+
 
