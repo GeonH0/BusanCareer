@@ -10,7 +10,6 @@ class JobListViewController: UITableViewController {
     var originalJobs: [JobItem] = []
     var sections: [Section] = []
     var sortType: SortType = .deadline
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +28,7 @@ class JobListViewController: UITableViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
-        
-        
+                
         JobDataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
             guard let self = self else { return }
             let filteredJobs = fetchedJobs.filter { job in
@@ -134,8 +132,7 @@ class JobListViewController: UITableViewController {
                         }
                     }
                 }
-
-                // 더 이상 불러올 데이터가 없으면 무한 스크롤을 멈춤
+                
                 if newJobs.isEmpty {
                     return
                 }

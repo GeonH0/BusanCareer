@@ -20,8 +20,7 @@ class JobListCell: UITableViewCell {
         [TitleLabel,AgencyNameLabel,EndLabel].forEach{
             contentView.addSubview($0)
         }
-        
-        
+                
         TitleLabel.font = .systemFont(ofSize: 18,weight: .bold)
         TitleLabel.numberOfLines = 2
         
