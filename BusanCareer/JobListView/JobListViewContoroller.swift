@@ -63,7 +63,7 @@ class JobListViewController: UITableViewController {
     }
 
     func scrollToTopIfNeeded() {
-        let indexPath = IndexPath(row: 0, section: 0) // 상단 셀의 IndexPath
+        let indexPath = IndexPath(row: 0, section: 0)
         if jobs.count > 0 {
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
@@ -119,8 +119,6 @@ class JobListViewController: UITableViewController {
             JobDataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
                 guard let self = self else { return }
                 var newJobs = fetchedJobs
-
-                // deadlineSwitch가 켜져 있을 경우, 마감일자가 지난 데이터를 제외
                 if self.deadlineSwitch.isOn {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -163,8 +161,7 @@ class JobListViewController: UITableViewController {
                 sections.append(Section(sectionTitle: location.name, items: filteredJobs, latitude: location.latitude, longitude: location.longitude))
             }
         }
-
-        // '기타' 섹션 처리
+        
         let otherJobs = jobs.filter { job in
             !LocationManager.shared.locations.contains(where: { job.recruitAgencyName.contains($0.name) })
         }
@@ -204,7 +201,7 @@ extension JobListViewController: UISearchBarDelegate {
         }
         
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            searchBar.resignFirstResponder() // 키보드 내리기
+            searchBar.resignFirstResponder() 
         }
         
         if sortType == .bySection {
