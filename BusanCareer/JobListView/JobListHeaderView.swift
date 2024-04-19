@@ -9,12 +9,12 @@ import UIKit
 
 
 class JobListHeaderView: UIView {
-    let switchLabel = UILabel()
+    private let switchLabel = UILabel()
     let deadlineSwitch = UISwitch()
     let searchBar = UISearchBar()
-    let sortButton = UIButton()
-    let latestButton = UIButton()
-    let sectionButton = UIButton()
+    private let sortButton = UIButton()
+    private let latestButton = UIButton()
+    private let sectionButton = UIButton()
     weak var delegate : JobListHeaderViewDelegate?
     
     override init(frame: CGRect) {
