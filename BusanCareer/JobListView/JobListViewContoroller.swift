@@ -2,8 +2,8 @@ import Alamofire
 
 class JobListViewController: UITableViewController {
     
-    let activityIndicator = UIActivityIndicatorView()
-    let deadlineSwitch = UISwitch()
+    private let activityIndicator = UIActivityIndicatorView()
+    private let deadlineSwitch = UISwitch()
     
     var currentPage = 1
     var jobs: [JobItem] = []

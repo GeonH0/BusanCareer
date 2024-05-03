@@ -10,11 +10,11 @@ import UIKit
 
 class JobDetailView: UIView {
     
-    let jobTitleLabel = UILabel()
-    let agencyNameLabel = UILabel()
-    let bunyaLabel = UILabel()
-    let endDateLabel = UILabel()
-    let reqTypeLabel = UILabel()
+    private let jobTitleLabel = UILabel()
+    private let agencyNameLabel = UILabel()
+    private let bunyaLabel = UILabel()
+    private let endDateLabel = UILabel()
+    private let reqTypeLabel = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

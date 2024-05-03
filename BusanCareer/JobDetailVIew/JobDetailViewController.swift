@@ -11,7 +11,7 @@ import UIKit
 class JobDetailViewController: UIViewController {
     
     var job: JobItem?
-    let jobDetailView = JobDetailView()
+    private let jobDetailView = JobDetailView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
