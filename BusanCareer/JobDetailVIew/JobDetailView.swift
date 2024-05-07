@@ -29,19 +29,12 @@ class JobDetailView: UIView {
     }
 
     private func setupLabels() {
-        jobTitleLabel.text = "Job Title"
-        agencyNameLabel.text = "Agency Name"
-        bunyaLabel.text = "Field"
-        endDateLabel.text = "End Date"
-        reqTypeLabel.text = "Requirement Type"
-
         [jobTitleLabel, agencyNameLabel, bunyaLabel, endDateLabel, reqTypeLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.textAlignment = .center
         }
         
         jobTitleLabel.numberOfLines = 2
-        
     }
 
 
