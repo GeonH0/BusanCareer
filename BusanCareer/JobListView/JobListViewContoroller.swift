@@ -16,6 +16,7 @@ class JobListViewController: UITableViewController {
         
         let headerView = JobListHeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 130))
         headerView.delegate = self
+        headerView.setSearchBarDelegate(self)
         
         tableView.tableHeaderView = headerView
         tableView.register(JobListCell.self, forCellReuseIdentifier: "JobListCell")
@@ -58,7 +59,7 @@ class JobListViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        headerView.searchBar.delegate = self
+        
         
     }
 

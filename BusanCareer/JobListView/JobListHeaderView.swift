@@ -10,8 +10,8 @@ import UIKit
 
 class JobListHeaderView: UIView {
     private let switchLabel = UILabel()
-    let deadlineSwitch = UISwitch()
-    let searchBar = UISearchBar()
+    private let deadlineSwitch = UISwitch()
+    private let searchBar = UISearchBar()
     private let sortButton = UIButton()
     private let latestButton = UIButton()
     private let sectionButton = UIButton()
@@ -61,10 +61,10 @@ class JobListHeaderView: UIView {
         NSLayoutConstraint.activate([
             switchLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             switchLabel.trailingAnchor.constraint(equalTo: deadlineSwitch.leadingAnchor, constant: -10),
-
+            
             deadlineSwitch.centerYAnchor.constraint(equalTo: switchLabel.centerYAnchor),
             deadlineSwitch.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-
+            
             searchBar.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             searchBar.topAnchor.constraint(equalTo: switchLabel.bottomAnchor, constant: 10),
@@ -83,22 +83,27 @@ class JobListHeaderView: UIView {
             sectionButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3),
         ])
     }
-    @objc private func sortButtonTapped() {
+    
+    func setSearchBarDelegate(_ delegate: UISearchBarDelegate) {
+        searchBar.delegate = delegate
+    }
+    
+    @objc func sortButtonTapped() {
         delegate?.sortButtonTapped()
     }
-
-    @objc private func latestButtonTapped() {
+    
+    @objc func latestButtonTapped() {
         delegate?.latestButtonTapped()
     }
-
-    @objc private func sectionButtonTapped() {
+    
+    @objc func sectionButtonTapped() {
         delegate?.sectionButtonTapped()
     }
-
-    @objc private func deadlineSwitchChanged(_ sender: UISwitch) {
+    
+    @objc func deadlineSwitchChanged(_ sender: UISwitch) {
         delegate?.deadlineSwitchChanged(isOn: sender.isOn)
     }
-
+    
     
 }
 protocol JobListHeaderViewDelegate: AnyObject {
