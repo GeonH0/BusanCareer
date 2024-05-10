@@ -88,19 +88,19 @@ class JobListHeaderView: UIView {
         searchBar.delegate = delegate
     }
     
-    @objc func sortButtonTapped() {
+    @objc private func sortButtonTapped() {
         delegate?.sortButtonTapped()
     }
     
-    @objc func latestButtonTapped() {
+    @objc private func latestButtonTapped() {
         delegate?.latestButtonTapped()
     }
     
-    @objc func sectionButtonTapped() {
+    @objc private func sectionButtonTapped() {
         delegate?.sectionButtonTapped()
     }
     
-    @objc func deadlineSwitchChanged(_ sender: UISwitch) {
+    @objc private func deadlineSwitchChanged(_ sender: UISwitch) {
         delegate?.deadlineSwitchChanged(isOn: sender.isOn)
     }
     
