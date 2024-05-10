@@ -10,9 +10,9 @@ import SnapKit
 
 class JobListCell: UITableViewCell {
 
-    let TitleLabel = UILabel()
-    let AgencyNameLabel = UILabel()
-    let EndLabel = UILabel()
+    private let TitleLabel = UILabel()
+    private let AgencyNameLabel = UILabel()
+    private let EndLabel = UILabel()
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -20,8 +20,7 @@ class JobListCell: UITableViewCell {
         [TitleLabel,AgencyNameLabel,EndLabel].forEach{
             contentView.addSubview($0)
         }
-        
-        
+                
         TitleLabel.font = .systemFont(ofSize: 18,weight: .bold)
         TitleLabel.numberOfLines = 2
         

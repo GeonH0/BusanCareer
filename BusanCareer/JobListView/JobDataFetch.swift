@@ -33,7 +33,7 @@ class JobDataFetcher {
                     let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
                     let welcome = try newJSONDecoder().decode(Welcome.self, from: data)
                     if let newItems = welcome.getJobOpnngInfo?.body?.items?.item {
-                        completion(newItems) // 새로운 데이터만 반환
+                        completion(newItems)
                     }
                 } catch {
                     print("Error decoding response: \(error)")

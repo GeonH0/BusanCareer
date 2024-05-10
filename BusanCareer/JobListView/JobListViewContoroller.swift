@@ -2,21 +2,21 @@ import Alamofire
 
 class JobListViewController: UITableViewController {
     
-    let activityIndicator = UIActivityIndicatorView()
-    let deadlineSwitch = UISwitch()
+    private let activityIndicator = UIActivityIndicatorView()
+    private let deadlineSwitch = UISwitch()
     
     var currentPage = 1
     var jobs: [JobItem] = []
     var originalJobs: [JobItem] = []
     var sections: [Section] = []
     var sortType: SortType = .deadline
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let headerView = JobListHeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 130))
         headerView.delegate = self
+        headerView.setSearchBarDelegate(self)
         
         tableView.tableHeaderView = headerView
         tableView.register(JobListCell.self, forCellReuseIdentifier: "JobListCell")
@@ -29,8 +29,7 @@ class JobListViewController: UITableViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
-        
-        
+                
         JobDataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
             guard let self = self else { return }
             let filteredJobs = fetchedJobs.filter { job in
@@ -60,12 +59,12 @@ class JobListViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        headerView.searchBar.delegate = self
+        
         
     }
 
     func scrollToTopIfNeeded() {
-        let indexPath = IndexPath(row: 0, section: 0) // 상단 셀의 IndexPath
+        let indexPath = IndexPath(row: 0, section: 0)
         if jobs.count > 0 {
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
@@ -121,8 +120,6 @@ class JobListViewController: UITableViewController {
             JobDataFetcher.fetchJobOverview(page: currentPage) { [weak self] fetchedJobs in
                 guard let self = self else { return }
                 var newJobs = fetchedJobs
-
-                // deadlineSwitch가 켜져 있을 경우, 마감일자가 지난 데이터를 제외
                 if self.deadlineSwitch.isOn {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -134,8 +131,7 @@ class JobListViewController: UITableViewController {
                         }
                     }
                 }
-
-                // 더 이상 불러올 데이터가 없으면 무한 스크롤을 멈춤
+                
                 if newJobs.isEmpty {
                     return
                 }
@@ -166,8 +162,7 @@ class JobListViewController: UITableViewController {
                 sections.append(Section(sectionTitle: location.name, items: filteredJobs, latitude: location.latitude, longitude: location.longitude))
             }
         }
-
-        // '기타' 섹션 처리
+        
         let otherJobs = jobs.filter { job in
             !LocationManager.shared.locations.contains(where: { job.recruitAgencyName.contains($0.name) })
         }
@@ -207,7 +202,7 @@ extension JobListViewController: UISearchBarDelegate {
         }
         
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            searchBar.resignFirstResponder() // 키보드 내리기
+            searchBar.resignFirstResponder() 
         }
         
         if sortType == .bySection {

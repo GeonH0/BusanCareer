@@ -11,7 +11,7 @@ import UIKit
 class JobDetailViewController: UIViewController {
     
     var job: JobItem?
-    let jobDetailView = JobDetailView()
+    private let jobDetailView = JobDetailView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +27,7 @@ class JobDetailViewController: UIViewController {
             jobDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             jobDetailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
-        
         configureUI()
-        
-        
     }
     
     func configureUI() {
